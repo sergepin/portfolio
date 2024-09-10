@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { Button } from "./ui/button"
 import Nav from "./Nav"
+import MobileNav from "./MobileNav"
 
 const Header = () => {
   return (
@@ -16,12 +17,14 @@ const Header = () => {
             <div className="hidden xl:flex items-center gap-8">
               <Nav/>
               <Link href="/contact">
-                <Button className="outline">Hire Me</Button>
+                <Button className="">Hire Me</Button>
               </Link>
             </div>
 
             {/* mobile nav */}
-            <div className="xl:hidden">Mobile nav</div>
+            <div className="xl:hidden">
+              <MobileNav/>
+            </div>
         </div>
     </header>
   )
