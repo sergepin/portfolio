@@ -1,5 +1,13 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getLocalizedPath } from '../i18n/routes';
+import "../styles/global.css";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
@@ -8,6 +16,16 @@
 		<title>Astro Basics</title>
 	</head>
 	<body>
+		<nav class="bg-gray-800 text-white p-4">
+			<div class="container mx-auto flex justify-between items-center">
+				<a href={getLocalizedPath(lang, 'home')} class="text-xl font-bold">Portfolio</a>
+				<div class="space-x-6">
+					<a href={getLocalizedPath(lang, 'projects')} class="hover:text-gray-300 transition-colors">{t('nav.projects')}</a>
+					<a href={getLocalizedPath(lang, 'about')} class="hover:text-gray-300 transition-colors">{t('nav.about')}</a>
+					<a href={getLocalizedPath(lang, 'contact')} class="hover:text-gray-300 transition-colors">{t('nav.contact')}</a>
+				</div>
+			</div>
+		</nav>
 		<slot />
 	</body>
 </html>

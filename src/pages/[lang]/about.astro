@@ -1,0 +1,127 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+export interface Props {}
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+    { params: { lang: 'es' } }
+  ];
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout title={t('about.title')}>
+  <main class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold mb-8">{t('about.title')}</h1>
+    
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">{t('about.introduction')}</h2>
+      <p class="text-lg leading-relaxed">
+        I am a dedicated and team-oriented professional with a passion for continuous learning 
+        and skill improvement. I thrive in collaborative environments where I can both contribute 
+        to and learn from my colleagues. My focus is on enhancing my expertise while sharing 
+        my knowledge to foster collective growth and success. Committed to hard work and 
+        excellence, I am always eager to embrace new challenges and opportunities for 
+        personal and professional development.
+      </p>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">{t('about.skills')}</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <h3 class="text-xl font-medium mb-3">{t('about.technical')}</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>JavaScript & TypeScript</li>
+            <li>Node.js & NestJS</li>
+            <li>React, Angular, Vue</li>
+            <li>Next.js</li>
+            <li>C# .NET</li>
+            <li>AWS Services (EC2, Lambda, S3)</li>
+            <li>MongoDB & PostgreSQL</li>
+            <li>Microsoft SQL Server</li>
+            <li>GraphQL</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-xl font-medium mb-3">{t('about.soft')}</h3>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Strong Communication</li>
+            <li>Leadership</li>
+            <li>Team Collaboration</li>
+            <li>Problem Solving</li>
+            <li>Project Management</li>
+            <li>Agile/Scrum</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">{t('about.experience')}</h2>
+      
+      <div class="space-y-6">
+        <div>
+          <h3 class="text-xl font-medium">Fullstack Web Developer - Appxcale LLC (2021-2024)</h3>
+          <p class="text-gray-600 mb-2">Managed over 50 e-commerce websites for prominent US-based brands</p>
+          <ul class="list-disc list-inside space-y-1">
+            <li>Maintenance and development of new functionalities</li>
+            <li>ADA compliance improvements</li>
+            <li>Development of internal tools using React, Angular, Vue, Node.js, and NextJS</li>
+            <li>Creation of stored procedures for Microsoft SQL environment</li>
+            <li>Leadership roles in various internal projects</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-medium">Junior Developer - Biinteli S.A.S (2020-2021)</h3>
+          <p class="text-gray-600 mb-2">Maintained and implemented new features for e-commerce website</p>
+          <ul class="list-disc list-inside space-y-1">
+            <li>Managed transition from Angular.js to Angular</li>
+            <li>Frontend and backend maintenance</li>
+            <li>API integration with ERP system</li>
+            <li>Deployment management</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">{t('about.education')}</h2>
+      <div>
+        <h3 class="text-xl font-medium">Systems Engineering</h3>
+        <p class="text-gray-600">Universidad Autonoma Del Caribe (2014-2020)</p>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">{t('about.accomplishments')}</h2>
+      <div class="space-y-6">
+        <div>
+          <h3 class="text-xl font-medium">Accomplishments App</h3>
+          <p class="text-gray-600">Led development of company-wide achievement sharing platform using Next.js, Node.js, and MongoDB</p>
+        </div>
+        
+        <div>
+          <h3 class="text-xl font-medium">ADA Compliance Initiative</h3>
+          <p class="text-gray-600">Led team of 10 developers to achieve full ADA compliance across 50+ e-commerce websites in 4 months</p>
+        </div>
+        
+        <div>
+          <h3 class="text-xl font-medium">Inventory Forecasting App</h3>
+          <p class="text-gray-600">Developed web application using Next.js, Node.js, GraphQL, and PostgreSQL for improved stock management</p>
+        </div>
+        
+        <div>
+          <h3 class="text-xl font-medium">Technology Migration</h3>
+          <p class="text-gray-600">Contributed to migration of websites from .NET to Next.js platform with Node.js backend</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout> 
