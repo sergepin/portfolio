@@ -49,37 +49,37 @@ const accomplishments = [
 ---
 
 <Layout title={t('about.title')}>
-  <main class="container mx-auto px-6 py-12">
-    <div class="max-w-4xl mx-auto space-y-12">
-      <h1 class="text-4xl font-extrabold text-primary text-center">{t('about.title')}</h1>
+  <main class="container mx-auto px-4 md:px-6 py-8 md:py-12">
+    <div class="max-w-4xl mx-auto space-y-8 md:space-y-12">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-primary text-center">{t('about.title')}</h1>
       
-      <section class="bg-background-primary rounded-lg shadow p-8">
-        <p class="text-lg text-secondary leading-relaxed">{t('about.introduction')}</p>
+      <section class="bg-background-primary rounded-lg shadow p-4 md:p-8">
+        <p class="text-base md:text-lg text-secondary leading-relaxed">{t('about.introduction')}</p>
       </section>
 
       <section>
-        <h2 class="text-2xl font-semibold text-primary mb-6">{t('about.skills')}</h2>
-        <div class="grid md:grid-cols-2 gap-6">
-          <div class="bg-background-primary rounded-lg shadow p-6 space-y-4">
-            <h3 class="text-xl font-semibold text-primary">{t('about.technical')}</h3>
-            <div class="space-y-3">
+        <h2 class="text-xl md:text-2xl font-semibold text-primary mb-4 md:mb-6">{t('about.skills')}</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+          <div class="bg-background-primary rounded-lg shadow p-4 md:p-6 space-y-3 md:space-y-4">
+            <h3 class="text-lg md:text-xl font-semibold text-primary">{t('about.technical')}</h3>
+            <div class="space-y-2 md:space-y-3">
               {skills.map(skill => (
                 <div class="flex items-center">
-                  <img src={`/icons/${skill}.svg`} alt={skill} class="w-6 h-6 mr-2">
-                  <span class="text-secondary capitalize">{skill}</span>
+                  <img src={`/icons/${skill}.svg`} alt={skill} class="w-5 h-5 md:w-6 md:h-6 mr-2">
+                  <span class="text-sm md:text-base text-secondary capitalize">{skill}</span>
                 </div>
               ))}
             </div>
           </div>
-          <div class="bg-background-primary rounded-lg shadow p-6 space-y-4">
-            <h3 class="text-xl font-semibold text-primary">{t('about.soft')}</h3>
-            <div class="space-y-3">
+          <div class="bg-background-primary rounded-lg shadow p-4 md:p-6 space-y-3 md:space-y-4">
+            <h3 class="text-lg md:text-xl font-semibold text-primary">{t('about.soft')}</h3>
+            <div class="space-y-2 md:space-y-3">
               {softSkills.map(({ name, color }) => (
                 <div class="flex items-center">
-                  <svg class={`w-6 h-6 mr-2 text-${color}-500`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class={`w-5 h-5 md:w-6 md:h-6 mr-2 text-${color}-500`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 20h9m-9-2h9M3 12h18M3 10h18m-9-8v16" />
                   </svg>
-                  <span class="text-secondary">{name}</span>
+                  <span class="text-sm md:text-base text-secondary">{name}</span>
                 </div>
               ))}
             </div>
@@ -88,13 +88,13 @@ const accomplishments = [
       </section>
 
       <section>
-        <h2 class="text-2xl font-semibold text-primary mb-6">{t('about.experience')}</h2>
-        <div class="space-y-6">
+        <h2 class="text-xl md:text-2xl font-semibold text-primary mb-4 md:mb-6">{t('about.experience')}</h2>
+        <div class="space-y-4 md:space-y-6">
           {experience.map(job => (
-            <div class="bg-background-primary rounded-lg shadow p-6">
-              <h3 class="text-xl font-semibold text-primary">{job.role}</h3>
-              <p class="text-secondary mb-2">{job.company} • {job.years}</p>
-              <ul class="list-disc list-inside text-secondary space-y-2">
+            <div class="bg-background-primary rounded-lg shadow p-4 md:p-6">
+              <h3 class="text-lg md:text-xl font-semibold text-primary">{job.role}</h3>
+              <p class="text-sm md:text-base text-secondary mb-2">{job.company} • {job.years}</p>
+              <ul class="list-disc list-inside text-sm md:text-base text-secondary space-y-1 md:space-y-2">
                 {job.tasks.map(task => <li>{task}</li>)}
               </ul>
             </div>
@@ -103,25 +103,25 @@ const accomplishments = [
       </section>
 
       <section>
-        <h2 class="text-2xl font-semibold text-primary mb-6">{t('about.education')}</h2>
-        <div class="bg-background-primary rounded-lg shadow p-6">
-          <h3 class="text-xl font-semibold text-primary">Bachelor of Computer Science</h3>
-          <p class="text-secondary">University of Technology • 2014 - 2018</p>
+        <h2 class="text-xl md:text-2xl font-semibold text-primary mb-4 md:mb-6">{t('about.education')}</h2>
+        <div class="bg-background-primary rounded-lg shadow p-4 md:p-6">
+          <h3 class="text-lg md:text-xl font-semibold text-primary">Bachelor of Computer Science</h3>
+          <p class="text-sm md:text-base text-secondary">University of Technology • 2014 - 2018</p>
         </div>
       </section>
 
       <section>
-        <h2 class="text-2xl font-semibold text-primary mb-6">{t('about.accomplishments')}</h2>
-        <div class="grid md:grid-cols-2 gap-6">
+        <h2 class="text-xl md:text-2xl font-semibold text-primary mb-4 md:mb-6">{t('about.accomplishments')}</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
           {accomplishments.map(accomplishment => (
-            <div class="bg-background-primary rounded-lg shadow p-6">
-              <div class="flex items-center mb-4">
-                <svg class={`w-6 h-6 text-${accomplishment.color}-500 mr-2`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="bg-background-primary rounded-lg shadow p-4 md:p-6">
+              <div class="flex items-center mb-3 md:mb-4">
+                <svg class={`w-5 h-5 md:w-6 md:h-6 text-${accomplishment.color}-500 mr-2`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                 </svg>
-                <h3 class="text-lg font-semibold text-primary">{accomplishment.title}</h3>
+                <h3 class="text-base md:text-lg font-semibold text-primary">{accomplishment.title}</h3>
               </div>
-              <p class="text-secondary">{accomplishment.description}</p>
+              <p class="text-sm md:text-base text-secondary">{accomplishment.description}</p>
             </div>
           ))}
         </div>
