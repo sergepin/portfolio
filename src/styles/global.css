@@ -3,9 +3,35 @@
 :root {
     --foreground-rgb: 0, 0, 0;
     --background-rgb: 255, 255, 255;
+    --text-primary: #1a1a1a;
+    --text-secondary: #4a5568;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f7fafc;
+    --border-color: #e2e8f0;
 }
 
 .dark {
     --foreground-rgb: 255, 255, 255;
     --background-rgb: 0, 0, 0;
+    --text-primary: #ffffff;
+    --text-secondary: #a0aec0;
+    --bg-primary: #1a202c;
+    --bg-secondary: #2d3748;
+    --border-color: #4a5568;
+}
+
+html {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html.light {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+html.dark {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
 }

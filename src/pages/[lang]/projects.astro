@@ -2,6 +2,8 @@
 import Layout from '../../layouts/Layout.astro';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
+export interface Props {}
+
 export function getStaticPaths() {
   return [
     { params: { lang: 'en' } },
@@ -93,43 +95,63 @@ const techCategories = [
 ---
 
 <Layout title={t('projects.title')}>
-  <main class="container mx-auto px-6 py-12 bg-gray-900 text-gray-100">
-    <h1 class="text-5xl font-extrabold mb-10 text-center">{t('projects.title')}</h1>
+  <main class="container mx-auto px-4 py-8">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-4xl font-bold mb-8 text-primary">{t('projects.title')}</h1>
 
-    <section class="mb-16">
-      <h2 class="text-3xl font-semibold mb-8 text-center">{t('projects.featured')}</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {projects.map(project => (
-          <div class="bg-gray-800 rounded-2xl shadow-md p-6 hover:shadow-lg transition">
-            <h3 class="text-2xl font-bold mb-4">{project.title}</h3>
-            <p class="text-gray-300 mb-4">{project.description}</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-background-primary rounded-lg shadow-lg overflow-hidden">
+          <img src="/images/project1.jpg" alt="Project 1" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h2 class="text-2xl font-semibold mb-2 text-primary">E-commerce Platform</h2>
+            <p class="text-secondary mb-4">A full-stack e-commerce solution built with React and Node.js</p>
             <div class="flex flex-wrap gap-2">
-              {project.technologies.map(tech => (
-                <span class={`px-4 py-1 rounded-full text-sm font-medium ${tech.color}`}>{tech.name}</span>
-              ))}
+              <span class="px-3 py-1 bg-background-secondary rounded-full text-sm text-secondary">React</span>
+              <span class="px-3 py-1 bg-background-secondary rounded-full text-sm text-secondary">Node.js</span>
+              <span class="px-3 py-1 bg-background-secondary rounded-full text-sm text-secondary">MongoDB</span>
             </div>
           </div>
-        ))}
-      </div>
-    </section>
+        </div>
 
-    <section>
-      <h2 class="text-3xl font-semibold mb-8 text-center">{t('projects.tech')}</h2>
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-        {techCategories.map(category => (
-          <div class="bg-gray-800 rounded-2xl shadow-md p-6 hover:shadow-lg transition">
-            <h3 class="text-2xl font-bold mb-6 text-center">{category.title}</h3>
-            <div class="flex flex-col gap-4">
-              {category.technologies.map(tech => (
-                <div class="flex items-center gap-3">
-                  <img src={`/icons/${tech.icon}`} alt={tech.name} class="w-6 h-6" />
-                  <span class="text-gray-100">{tech.name}</span>
-                </div>
-              ))}
+        <div class="bg-background-primary rounded-lg shadow-lg overflow-hidden">
+          <img src="/images/project2.jpg" alt="Project 2" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h2 class="text-2xl font-semibold mb-2 text-primary">Task Management App</h2>
+            <p class="text-secondary mb-4">A collaborative task management application with real-time updates</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-background-secondary rounded-full text-sm text-secondary">Vue.js</span>
+              <span class="px-3 py-1 bg-background-secondary rounded-full text-sm text-secondary">Firebase</span>
+              <span class="px-3 py-1 bg-background-secondary rounded-full text-sm text-secondary">Tailwind CSS</span>
             </div>
           </div>
-        ))}
+        </div>
+
+        <div class="bg-background-primary rounded-lg shadow-lg overflow-hidden">
+          <img src="/images/project3.jpg" alt="Project 3" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h2 class="text-2xl font-semibold mb-2 text-primary">Weather Dashboard</h2>
+            <p class="text-secondary mb-4">A weather dashboard showing real-time weather data and forecasts</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-background-secondary rounded-full text-sm text-secondary">Angular</span>
+              <span class="px-3 py-1 bg-background-secondary rounded-full text-sm text-secondary">OpenWeather API</span>
+              <span class="px-3 py-1 bg-background-secondary rounded-full text-sm text-secondary">Chart.js</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-background-primary rounded-lg shadow-lg overflow-hidden">
+          <img src="/images/project4.jpg" alt="Project 4" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h2 class="text-2xl font-semibold mb-2 text-primary">Portfolio Website</h2>
+            <p class="text-secondary mb-4">A responsive portfolio website built with modern web technologies</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-background-secondary rounded-full text-sm text-secondary">Astro</span>
+              <span class="px-3 py-1 bg-background-secondary rounded-full text-sm text-secondary">Tailwind CSS</span>
+              <span class="px-3 py-1 bg-background-secondary rounded-full text-sm text-secondary">TypeScript</span>
+            </div>
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
   </main>
 </Layout>

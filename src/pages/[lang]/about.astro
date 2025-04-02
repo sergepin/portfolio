@@ -2,8 +2,6 @@
 import Layout from '../../layouts/Layout.astro';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
-export interface Props {}
-
 export function getStaticPaths() {
   return [
     { params: { lang: 'en' } },
@@ -13,127 +11,121 @@ export function getStaticPaths() {
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const skills = ['react', 'nodejs', 'python', 'aws'];
+const softSkills = [
+  { name: 'Team Leadership', color: 'green' },
+  { name: 'Communication', color: 'blue' },
+  { name: 'Problem Solving', color: 'purple' }
+];
+
+const experience = [
+  {
+    role: 'Senior Full Stack Developer',
+    company: 'Tech Company',
+    years: '2020 - Present',
+    tasks: ['Led development of full-stack applications', 'Implemented CI/CD pipelines', 'Mentored junior developers']
+  },
+  {
+    role: 'Full Stack Developer',
+    company: 'Digital Agency',
+    years: '2018 - 2020',
+    tasks: ['Developed responsive web applications', 'Optimized performance', 'Improved UI/UX with design team']
+  }
+];
+
+const accomplishments = [
+  {
+    title: 'Technical Achievement',
+    color: 'yellow',
+    description: 'Migrated legacy systems to cloud, improving performance by 40%.'
+  },
+  {
+    title: 'Team Achievement',
+    color: 'green',
+    description: 'Created a mentoring program that promoted juniors to seniors in 2 years.'
+  }
+];
 ---
 
 <Layout title={t('about.title')}>
-  <main class="container mx-auto px-4 py-8">
-    <div class="max-w-4xl mx-auto">
-      <h1 class="text-4xl font-bold mb-8 text-gray-900 dark:text-white">{t('about.title')}</h1>
-
-      <section class="mb-12">
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
-          <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6">{t('about.introduction')}</p>
-        </div>
+  <main class="container mx-auto px-6 py-12">
+    <div class="max-w-4xl mx-auto space-y-12">
+      <h1 class="text-4xl font-extrabold text-primary text-center">{t('about.title')}</h1>
+      
+      <section class="bg-background-primary rounded-lg shadow p-8">
+        <p class="text-lg text-secondary leading-relaxed">{t('about.introduction')}</p>
       </section>
 
-      <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-6 text-gray-900 dark:text-white">{t('about.skills')}</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
-            <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">{t('about.technical')}</h3>
+      <section>
+        <h2 class="text-2xl font-semibold text-primary mb-6">{t('about.skills')}</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-background-primary rounded-lg shadow p-6 space-y-4">
+            <h3 class="text-xl font-semibold text-primary">{t('about.technical')}</h3>
             <div class="space-y-3">
-              <div class="flex items-center">
-                <img src="/icons/react.svg" alt="React" class="w-6 h-6 mr-2">
-                <span class="text-gray-700 dark:text-gray-300">React</span>
-              </div>
-              <div class="flex items-center">
-                <img src="/icons/nodejs.svg" alt="Node.js" class="w-6 h-6 mr-2">
-                <span class="text-gray-700 dark:text-gray-300">Node.js</span>
-              </div>
-              <div class="flex items-center">
-                <img src="/icons/python.svg" alt="Python" class="w-6 h-6 mr-2">
-                <span class="text-gray-700 dark:text-gray-300">Python</span>
-              </div>
-              <div class="flex items-center">
-                <img src="/icons/aws.svg" alt="AWS" class="w-6 h-6 mr-2">
-                <span class="text-gray-700 dark:text-gray-300">AWS</span>
-              </div>
+              {skills.map(skill => (
+                <div class="flex items-center">
+                  <img src={`/icons/${skill}.svg`} alt={skill} class="w-6 h-6 mr-2">
+                  <span class="text-secondary capitalize">{skill}</span>
+                </div>
+              ))}
             </div>
           </div>
-
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
-            <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">{t('about.soft')}</h3>
+          <div class="bg-background-primary rounded-lg shadow p-6 space-y-4">
+            <h3 class="text-xl font-semibold text-primary">{t('about.soft')}</h3>
             <div class="space-y-3">
-              <div class="flex items-center">
-                <svg class="w-6 h-6 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-                <span class="text-gray-700 dark:text-gray-300">Team Leadership</span>
-              </div>
-              <div class="flex items-center">
-                <svg class="w-6 h-6 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                </svg>
-                <span class="text-gray-700 dark:text-gray-300">Communication</span>
-              </div>
-              <div class="flex items-center">
-                <svg class="w-6 h-6 mr-2 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                </svg>
-                <span class="text-gray-700 dark:text-gray-300">Problem Solving</span>
-              </div>
+              {softSkills.map(({ name, color }) => (
+                <div class="flex items-center">
+                  <svg class={`w-6 h-6 mr-2 text-${color}-500`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 20h9m-9-2h9M3 12h18M3 10h18m-9-8v16" />
+                  </svg>
+                  <span class="text-secondary">{name}</span>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
-
-      <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-6 text-gray-900 dark:text-white">{t('about.experience')}</h2>
-        <div class="space-y-6">
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
-            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Senior Full Stack Developer</h3>
-            <p class="text-gray-600 dark:text-gray-400 mb-2">Tech Company • 2020 - Present</p>
-            <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-2">
-              <li>Led development of multiple full-stack applications</li>
-              <li>Implemented CI/CD pipelines and automated testing</li>
-              <li>Mentored junior developers and conducted code reviews</li>
-            </ul>
-          </div>
-
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
-            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Full Stack Developer</h3>
-            <p class="text-gray-600 dark:text-gray-400 mb-2">Digital Agency • 2018 - 2020</p>
-            <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-2">
-              <li>Developed responsive web applications</li>
-              <li>Optimized application performance</li>
-              <li>Collaborated with design team on UI/UX improvements</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-6 text-gray-900 dark:text-white">{t('about.education')}</h2>
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
-          <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Bachelor of Computer Science</h3>
-          <p class="text-gray-600 dark:text-gray-400">University of Technology • 2014 - 2018</p>
         </div>
       </section>
 
       <section>
-        <h2 class="text-2xl font-semibold mb-6 text-gray-900 dark:text-white">{t('about.accomplishments')}</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
-            <div class="flex items-center mb-4">
-              <svg class="w-6 h-6 text-yellow-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-              </svg>
-              <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Technical Achievement</h3>
+        <h2 class="text-2xl font-semibold text-primary mb-6">{t('about.experience')}</h2>
+        <div class="space-y-6">
+          {experience.map(job => (
+            <div class="bg-background-primary rounded-lg shadow p-6">
+              <h3 class="text-xl font-semibold text-primary">{job.role}</h3>
+              <p class="text-secondary mb-2">{job.company} • {job.years}</p>
+              <ul class="list-disc list-inside text-secondary space-y-2">
+                {job.tasks.map(task => <li>{task}</li>)}
+              </ul>
             </div>
-            <p class="text-gray-700 dark:text-gray-300">Led the successful migration of legacy systems to modern cloud infrastructure, resulting in 40% improved performance and reduced maintenance costs.</p>
-          </div>
+          ))}
+        </div>
+      </section>
 
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
-            <div class="flex items-center mb-4">
-              <svg class="w-6 h-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Team Achievement</h3>
+      <section>
+        <h2 class="text-2xl font-semibold text-primary mb-6">{t('about.education')}</h2>
+        <div class="bg-background-primary rounded-lg shadow p-6">
+          <h3 class="text-xl font-semibold text-primary">Bachelor of Computer Science</h3>
+          <p class="text-secondary">University of Technology • 2014 - 2018</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-semibold text-primary mb-6">{t('about.accomplishments')}</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          {accomplishments.map(accomplishment => (
+            <div class="bg-background-primary rounded-lg shadow p-6">
+              <div class="flex items-center mb-4">
+                <svg class={`w-6 h-6 text-${accomplishment.color}-500 mr-2`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                </svg>
+                <h3 class="text-lg font-semibold text-primary">{accomplishment.title}</h3>
+              </div>
+              <p class="text-secondary">{accomplishment.description}</p>
             </div>
-            <p class="text-gray-700 dark:text-gray-300">Established and led a successful mentoring program that helped junior developers grow into senior positions within 2 years.</p>
-          </div>
+          ))}
         </div>
       </section>
     </div>
   </main>
-</Layout> 
+</Layout>
