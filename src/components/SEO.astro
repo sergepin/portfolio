@@ -1,0 +1,68 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  article?: boolean;
+  lang: string;
+  canonicalURL?: string;
+}
+
+const {
+  title,
+  description,
+  image = '/images/og-image.jpg',
+  article = false,
+  lang,
+  canonicalURL = Astro.url.href
+} = Astro.props;
+
+const siteTitle = 'Sergio | Full Stack Developer';
+const fullTitle = `${title} | ${siteTitle}`;
+const siteDescription = 'Full Stack Developer specializing in modern web technologies. Building scalable and performant applications with React, Node.js, and cloud technologies.';
+---
+
+<!-- Primary Meta Tags -->
+<title>{fullTitle}</title>
+<meta name="title" content={fullTitle}>
+<meta name="description" content={description}>
+<meta name="author" content="Sergio">
+<meta name="keywords" content="full stack developer, web developer, react developer, node.js developer, typescript, javascript, software engineer">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={article ? 'article' : 'website'}>
+<meta property="og:url" content={canonicalURL}>
+<meta property="og:title" content={fullTitle}>
+<meta property="og:description" content={description}>
+<meta property="og:image" content={new URL(image, Astro.url)}>
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content={canonicalURL}>
+<meta property="twitter:title" content={fullTitle}>
+<meta property="twitter:description" content={description}>
+<meta property="twitter:image" content={new URL(image, Astro.url)}>
+
+<!-- Additional Meta Tags -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="theme-color" content="#ffffff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content={siteTitle}>
+<meta name="format-detection" content="telephone=no">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content={siteTitle}>
+
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="/icons/logo.ico">
+<link rel="shortcut icon" type="image/x-icon" href="/icons/logo.ico">
+<link rel="apple-touch-icon" href="/icons/logo.png">
+<link rel="manifest" href="/manifest.json">
+
+<!-- Canonical URL -->
+<link rel="canonical" href={canonicalURL}>
+
+<!-- Language -->
+<html lang={lang}> 
