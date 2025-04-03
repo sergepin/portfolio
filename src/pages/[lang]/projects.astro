@@ -2,8 +2,6 @@
 import Layout from '../../layouts/Layout.astro';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
-export interface Props {}
-
 export function getStaticPaths() {
   return [
     { params: { lang: 'en' } },
@@ -14,144 +12,76 @@ export function getStaticPaths() {
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const projects = [
+type ProfessionalProjectKey = 'accomplishments' | 'inventory' | 'ada' | 'migration';
+type PersonalProjectKey = 'lion-pos' | 'invoice';
+
+const professionalProjects = [
   {
-    title: 'Accomplishments App',
-    description: 'Company-wide achievement sharing platform enabling employees to recognize and celebrate successes.',
-    technologies: [
-      { name: 'Next.js', color: 'bg-blue-500 text-white' },
-      { name: 'Node.js', color: 'bg-green-500 text-white' },
-      { name: 'MongoDB', color: 'bg-yellow-500 text-white' }
-    ]
+    key: 'accomplishments' as ProfessionalProjectKey,
+    technologies: ['Next.js', 'Node.js', 'MongoDB']
   },
   {
-    title: 'ADA Compliance Initiative',
-    description: 'Led comprehensive accessibility improvements across 50+ e-commerce websites.',
-    technologies: [
-      { name: 'C#', color: 'bg-purple-500 text-white' },
-      { name: '.NET', color: 'bg-red-500 text-white' },
-      { name: 'Accessibility', color: 'bg-indigo-500 text-white' }
-    ]
+    key: 'inventory' as ProfessionalProjectKey,
+    technologies: ['Next.js', 'Django', 'GraphQL', 'PostgreSQL']
   },
   {
-    title: 'Inventory Forecasting App',
-    description: 'Modern web application for stock level visualization and trend analysis.',
-    technologies: [
-      { name: 'Next.js', color: 'bg-blue-500 text-white' },
-      { name: 'Node.js', color: 'bg-green-500 text-white' },
-      { name: 'GraphQL', color: 'bg-pink-500 text-white' },
-      { name: 'PostgreSQL', color: 'bg-cyan-500 text-white' }
-    ]
+    key: 'ada' as ProfessionalProjectKey,
+    technologies: ['C#', '.NET']
   },
   {
-    title: 'E-commerce Platform Migration',
-    description: 'Led migration of legacy .NET websites to modern Next.js platform.',
-    technologies: [
-      { name: 'Next.js', color: 'bg-blue-500 text-white' },
-      { name: 'Node.js', color: 'bg-green-500 text-white' },
-      { name: 'C#', color: 'bg-purple-500 text-white' }
-    ]
+    key: 'migration' as ProfessionalProjectKey,
+    technologies: ['Next.js', 'Node.js', 'MSSQL']
   }
 ];
 
-const techCategories = [
+const personalProjects = [
   {
-    title: t('projects.frontend'),
-    technologies: [
-      { name: 'React', icon: 'react.svg' },
-      { name: 'Angular', icon: 'angular.svg' },
-      { name: 'Vue', icon: 'vue.svg' },
-      { name: 'Next.js', icon: 'nextjs.svg' }
-    ]
+    key: 'lion-pos' as PersonalProjectKey,
+    technologies: ['React', 'Tauri (Rust)'],
+    image: '/images/lion-pos.png',
+    codeLink: ''
   },
   {
-    title: t('projects.backend'),
-    technologies: [
-      { name: 'Node.js', icon: 'nodejs.svg' },
-      { name: 'NestJS', icon: 'nestjs.svg' },
-      { name: '.NET', icon: 'dotnet.svg' },
-      { name: 'Python', icon: 'python.svg' }
-    ]
-  },
-  {
-    title: t('projects.cloud'),
-    technologies: [
-      { name: 'AWS', icon: 'aws.svg' },
-      { name: 'Lambda', icon: 'lambda.svg' },
-      { name: 'EC2', icon: 'ec2.svg'},
-      { name: 'S3', icon: 's3.svg' }
-    ]
-  },
-  {
-    title: t('projects.databases'),
-    technologies: [
-      { name: 'PostgreSQL', icon: 'postgresql.svg' },
-      { name: 'MongoDB', icon: 'mongodb.svg' },
-      { name: 'MySQL', icon: 'mysql.svg' },
-      { name: 'SQL Server', icon: 'sqlserver.svg' }
-    ]
+    key: 'invoice' as PersonalProjectKey,
+    technologies: ['Angular', 'NestJS'],
+    image: '/images/invoice-app.png',
+    codeLink: ''
   }
 ];
 ---
 
 <Layout title={t('projects.title')}>
-  <main class="container mx-auto px-4 py-8">
-    <div class="max-w-4xl mx-auto">
-      <h1 class="text-3xl md:text-4xl font-bold mb-6 md:mb-8 text-primary">{t('projects.title')}</h1>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-        <div class="bg-background-primary rounded-lg shadow-lg overflow-hidden">
-          <img src="/images/project1.jpg" alt="Project 1" class="w-full h-40 md:h-48 object-cover">
-          <div class="p-4 md:p-6">
-            <h2 class="text-xl md:text-2xl font-semibold mb-2 text-primary">E-commerce Platform</h2>
-            <p class="text-sm md:text-base text-secondary mb-4">A full-stack e-commerce solution built with React and Node.js</p>
-            <div class="flex flex-wrap gap-2">
-              <span class="px-2 md:px-3 py-1 bg-background-secondary rounded-full text-xs md:text-sm text-secondary">React</span>
-              <span class="px-2 md:px-3 py-1 bg-background-secondary rounded-full text-xs md:text-sm text-secondary">Node.js</span>
-              <span class="px-2 md:px-3 py-1 bg-background-secondary rounded-full text-xs md:text-sm text-secondary">MongoDB</span>
+  <main class="container mx-auto px-6 md:px-12 py-12 md:py-16">
+    <div class="max-w-5xl mx-auto space-y-12 md:space-y-16">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-primary text-center">{t('projects.title')}</h1>
+      
+      <section>
+        <h2 class="text-2xl md:text-3xl font-semibold text-primary mb-6 md:mb-8">{t('projects.professional')}</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          {professionalProjects.map(project => (
+            <div class="bg-background-primary rounded-2xl shadow-lg p-6 md:p-8 hover:shadow-2xl transition">
+              <h3 class="text-xl md:text-2xl font-semibold text-primary">{t(`projects.professional.${project.key}.name`)}</h3>
+              <p class="text-base md:text-lg text-secondary mt-2">{t(`projects.professional.${project.key}.description`)}</p>
+              <p class="text-sm md:text-base text-secondary mt-3 font-medium">{t('projects.technologies')}: {project.technologies.join(', ')}</p>
             </div>
-          </div>
+          ))}
         </div>
+      </section>
 
-        <div class="bg-background-primary rounded-lg shadow-lg overflow-hidden">
-          <img src="/images/project2.jpg" alt="Project 2" class="w-full h-40 md:h-48 object-cover">
-          <div class="p-4 md:p-6">
-            <h2 class="text-xl md:text-2xl font-semibold mb-2 text-primary">Task Management App</h2>
-            <p class="text-sm md:text-base text-secondary mb-4">A collaborative task management application with real-time updates</p>
-            <div class="flex flex-wrap gap-2">
-              <span class="px-2 md:px-3 py-1 bg-background-secondary rounded-full text-xs md:text-sm text-secondary">Vue.js</span>
-              <span class="px-2 md:px-3 py-1 bg-background-secondary rounded-full text-xs md:text-sm text-secondary">Firebase</span>
-              <span class="px-2 md:px-3 py-1 bg-background-secondary rounded-full text-xs md:text-sm text-secondary">Tailwind CSS</span>
-            </div>
-          </div>
+      <section>
+        <h2 class="text-2xl md:text-3xl font-semibold text-primary mb-6 md:mb-8">{t('projects.personal')}</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          {personalProjects.map(project => (
+            <a href="#" class="bg-background-primary rounded-2xl shadow-lg p-6 md:p-8 block hover:shadow-2xl transition transform hover:scale-105">
+              <img src={project.image} alt={t(`projects.personal.${project.key}.name`)} class="w-full h-40 md:h-48 object-cover rounded-lg mb-4" />
+              <h3 class="text-xl md:text-2xl font-semibold text-primary">{t(`projects.personal.${project.key}.name`)}</h3>
+              <p class="text-base md:text-lg text-secondary mt-2">{t(`projects.personal.${project.key}.description`)}</p>
+              <p class="text-sm md:text-base text-secondary mt-2 font-medium">{t('projects.technologies')}: {project.technologies.join(', ')}</p>
+              {project.codeLink && <a href={project.codeLink} target="_blank" class="text-blue-500 text-sm md:text-base mt-3 block font-medium underline">{t('projects.view-code')}</a>}
+            </a>
+          ))}
         </div>
-
-        <div class="bg-background-primary rounded-lg shadow-lg overflow-hidden">
-          <img src="/images/project3.jpg" alt="Project 3" class="w-full h-40 md:h-48 object-cover">
-          <div class="p-4 md:p-6">
-            <h2 class="text-xl md:text-2xl font-semibold mb-2 text-primary">Weather Dashboard</h2>
-            <p class="text-sm md:text-base text-secondary mb-4">A weather dashboard showing real-time weather data and forecasts</p>
-            <div class="flex flex-wrap gap-2">
-              <span class="px-2 md:px-3 py-1 bg-background-secondary rounded-full text-xs md:text-sm text-secondary">Angular</span>
-              <span class="px-2 md:px-3 py-1 bg-background-secondary rounded-full text-xs md:text-sm text-secondary">OpenWeather API</span>
-              <span class="px-2 md:px-3 py-1 bg-background-secondary rounded-full text-xs md:text-sm text-secondary">Chart.js</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-background-primary rounded-lg shadow-lg overflow-hidden">
-          <img src="/images/project4.jpg" alt="Project 4" class="w-full h-40 md:h-48 object-cover">
-          <div class="p-4 md:p-6">
-            <h2 class="text-xl md:text-2xl font-semibold mb-2 text-primary">Portfolio Website</h2>
-            <p class="text-sm md:text-base text-secondary mb-4">A responsive portfolio website built with modern web technologies</p>
-            <div class="flex flex-wrap gap-2">
-              <span class="px-2 md:px-3 py-1 bg-background-secondary rounded-full text-xs md:text-sm text-secondary">Astro</span>
-              <span class="px-2 md:px-3 py-1 bg-background-secondary rounded-full text-xs md:text-sm text-secondary">Tailwind CSS</span>
-              <span class="px-2 md:px-3 py-1 bg-background-secondary rounded-full text-xs md:text-sm text-secondary">TypeScript</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      </section>
     </div>
   </main>
 </Layout>

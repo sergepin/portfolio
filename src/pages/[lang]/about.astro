@@ -11,120 +11,29 @@ export function getStaticPaths() {
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-
-const skills = ['react', 'nodejs', 'python', 'aws'];
-const softSkills = [
-  { name: 'Team Leadership', color: 'green' },
-  { name: 'Communication', color: 'blue' },
-  { name: 'Problem Solving', color: 'purple' }
-];
-
-const experience = [
-  {
-    role: 'Senior Full Stack Developer',
-    company: 'Tech Company',
-    years: '2020 - Present',
-    tasks: ['Led development of full-stack applications', 'Implemented CI/CD pipelines', 'Mentored junior developers']
-  },
-  {
-    role: 'Full Stack Developer',
-    company: 'Digital Agency',
-    years: '2018 - 2020',
-    tasks: ['Developed responsive web applications', 'Optimized performance', 'Improved UI/UX with design team']
-  }
-];
-
-const accomplishments = [
-  {
-    title: 'Technical Achievement',
-    color: 'yellow',
-    description: 'Migrated legacy systems to cloud, improving performance by 40%.'
-  },
-  {
-    title: 'Team Achievement',
-    color: 'green',
-    description: 'Created a mentoring program that promoted juniors to seniors in 2 years.'
-  }
-];
 ---
 
 <Layout title={t('about.title')}>
-  <main class="container mx-auto px-4 md:px-6 py-8 md:py-12">
-    <div class="max-w-4xl mx-auto space-y-8 md:space-y-12">
-      <h1 class="text-3xl md:text-4xl font-extrabold text-primary text-center">{t('about.title')}</h1>
+  <main class="container mx-auto px-6 md:px-12 py-12 md:py-16">
+    <div class="max-w-5xl mx-auto space-y-12 md:space-y-16">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-primary text-center">{t('about.title')}</h1>
       
-      <section class="bg-background-primary rounded-lg shadow p-4 md:p-8">
-        <p class="text-base md:text-lg text-secondary leading-relaxed">{t('about.introduction')}</p>
+      <section>
+        <h2 class="text-2xl md:text-3xl font-semibold text-primary mb-6 md:mb-8">{t('about.who-am-i')}</h2>
+        <p class="text-lg md:text-xl text-secondary leading-relaxed">{t('about.who-am-i-text-1')}</p>
+        <p class="text-lg md:text-xl text-secondary leading-relaxed mt-4">{t('about.who-am-i-text-2')}</p>
       </section>
 
       <section>
-        <h2 class="text-xl md:text-2xl font-semibold text-primary mb-4 md:mb-6">{t('about.skills')}</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-          <div class="bg-background-primary rounded-lg shadow p-4 md:p-6 space-y-3 md:space-y-4">
-            <h3 class="text-lg md:text-xl font-semibold text-primary">{t('about.technical')}</h3>
-            <div class="space-y-2 md:space-y-3">
-              {skills.map(skill => (
-                <div class="flex items-center">
-                  <img src={`/icons/${skill}.svg`} alt={skill} class="w-5 h-5 md:w-6 md:h-6 mr-2">
-                  <span class="text-sm md:text-base text-secondary capitalize">{skill}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div class="bg-background-primary rounded-lg shadow p-4 md:p-6 space-y-3 md:space-y-4">
-            <h3 class="text-lg md:text-xl font-semibold text-primary">{t('about.soft')}</h3>
-            <div class="space-y-2 md:space-y-3">
-              {softSkills.map(({ name, color }) => (
-                <div class="flex items-center">
-                  <svg class={`w-5 h-5 md:w-6 md:h-6 mr-2 text-${color}-500`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 20h9m-9-2h9M3 12h18M3 10h18m-9-8v16" />
-                  </svg>
-                  <span class="text-sm md:text-base text-secondary">{name}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+        <h2 class="text-2xl md:text-3xl font-semibold text-primary mb-6 md:mb-8">{t('about.what-drives-me')}</h2>
+        <p class="text-lg md:text-xl text-secondary leading-relaxed">{t('about.what-drives-me-text-1')}</p>
+        <p class="text-lg md:text-xl text-secondary leading-relaxed mt-4">{t('about.what-drives-me-text-2')}</p>
       </section>
 
       <section>
-        <h2 class="text-xl md:text-2xl font-semibold text-primary mb-4 md:mb-6">{t('about.experience')}</h2>
-        <div class="space-y-4 md:space-y-6">
-          {experience.map(job => (
-            <div class="bg-background-primary rounded-lg shadow p-4 md:p-6">
-              <h3 class="text-lg md:text-xl font-semibold text-primary">{job.role}</h3>
-              <p class="text-sm md:text-base text-secondary mb-2">{job.company} • {job.years}</p>
-              <ul class="list-disc list-inside text-sm md:text-base text-secondary space-y-1 md:space-y-2">
-                {job.tasks.map(task => <li>{task}</li>)}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section>
-        <h2 class="text-xl md:text-2xl font-semibold text-primary mb-4 md:mb-6">{t('about.education')}</h2>
-        <div class="bg-background-primary rounded-lg shadow p-4 md:p-6">
-          <h3 class="text-lg md:text-xl font-semibold text-primary">Bachelor of Computer Science</h3>
-          <p class="text-sm md:text-base text-secondary">University of Technology • 2014 - 2018</p>
-        </div>
-      </section>
-
-      <section>
-        <h2 class="text-xl md:text-2xl font-semibold text-primary mb-4 md:mb-6">{t('about.accomplishments')}</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-          {accomplishments.map(accomplishment => (
-            <div class="bg-background-primary rounded-lg shadow p-4 md:p-6">
-              <div class="flex items-center mb-3 md:mb-4">
-                <svg class={`w-5 h-5 md:w-6 md:h-6 text-${accomplishment.color}-500 mr-2`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                </svg>
-                <h3 class="text-base md:text-lg font-semibold text-primary">{accomplishment.title}</h3>
-              </div>
-              <p class="text-sm md:text-base text-secondary">{accomplishment.description}</p>
-            </div>
-          ))}
-        </div>
+        <h2 class="text-2xl md:text-3xl font-semibold text-primary mb-6 md:mb-8">{t('about.beyond-code')}</h2>
+        <p class="text-lg md:text-xl text-secondary leading-relaxed">{t('about.beyond-code-text-1')}</p>
+        <p class="text-lg md:text-xl text-secondary leading-relaxed mt-4">{t('about.beyond-code-text-2')}</p>
       </section>
     </div>
   </main>
