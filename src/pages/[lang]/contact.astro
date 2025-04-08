@@ -180,7 +180,6 @@ const t = useTranslations(lang);
         throw new Error(result.message || 'Error sending message');
       }
     } catch (error) {
-      console.error('Form submission error:', error);
       formMessage.textContent = error instanceof Error ? error.message : 'Error sending message. Please try again.';
       formMessage.classList.remove('hidden', 'text-green-600');
       formMessage.classList.add('text-red-600');
