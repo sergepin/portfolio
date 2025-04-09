@@ -1,0 +1,23 @@
+---
+interface Props {
+  dates: string;
+  role: string;
+  company: string;
+  description: string;
+  logo: string;
+}
+
+const { dates, role, company, description, logo } = Astro.props;
+---
+
+<div class="relative pl-8 before:absolute before:left-0 before:top-0 before:size-2 before:rounded-full before:bg-gray-200 before:dark:bg-neutral-700">
+  <div class="flex items-center gap-4 mb-2">
+    <img src={logo} alt={`${company} logo`} class="size-8 rounded bg-white p-1 shadow-sm" />
+    <div>
+      <h3 class="text-lg font-semibold text-primary dark:text-neutral-200">{role}</h3>
+      <p class="text-sm text-secondary dark:text-neutral-400">{company}</p>
+    </div>
+  </div>
+  <p class="text-sm text-gray-500 dark:text-neutral-500 mb-2">{dates}</p>
+  <p class="text-secondary dark:text-neutral-400">{description}</p>
+</div> 

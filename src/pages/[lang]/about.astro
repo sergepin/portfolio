@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import AboutExperience from '../../components/AboutExperience.astro';
 
 export function getStaticPaths() {
   return [
@@ -11,6 +12,36 @@ export function getStaticPaths() {
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const experiences = [
+  {
+    dates: lang === 'en' ? "June 2018 · Present" : "Junio 2018 · Presente",
+    role: lang === 'en' ? "Front-end Engineer" : "Ingeniero Front-end",
+    company: "Full Truck Alliance",
+    description: lang === 'en' 
+      ? "Responsible for customer service and CRM system front-end development."
+      : "Responsable del desarrollo front-end del sistema de servicio al cliente y CRM.",
+    logo: "/assets/images/experiences/fta.ico"
+  },
+  {
+    dates: lang === 'en' ? "July 2015 · June 2018" : "Julio 2015 · Junio 2018",
+    role: lang === 'en' ? "Front-end Engineer" : "Ingeniero Front-end",
+    company: "YOHO!",
+    description: lang === 'en'
+      ? "Responsible for mobile front-end development of e-commerce platform."
+      : "Responsable del desarrollo front-end móvil de la plataforma de comercio electrónico.",
+    logo: "/assets/images/experiences/yoho.ico"
+  },
+  {
+    dates: lang === 'en' ? "September 2014 · July 2015" : "Septiembre 2014 · Julio 2015",
+    role: lang === 'en' ? "Node.JS Developer" : "Desarrollador Node.JS",
+    company: "WuLian",
+    description: lang === 'en'
+      ? "Intern, involved in the development of Internet of Things cloud systems."
+      : "Pasante, involucrado en el desarrollo de sistemas en la nube para Internet de las Cosas.",
+    logo: "/assets/images/experiences/wulian.ico"
+  }
+];
 ---
 
 <Layout title={t('about.title')}>
@@ -34,6 +65,29 @@ const t = useTranslations(lang);
         <h2 class="text-2xl md:text-3xl font-semibold text-primary mb-6 md:mb-8">{t('about.beyond-code')}</h2>
         <p class="text-lg md:text-xl text-secondary leading-relaxed">{t('about.beyond-code-text-1')}</p>
         <p class="text-lg md:text-xl text-secondary leading-relaxed mt-4">{t('about.beyond-code-text-2')}</p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl md:text-3xl font-semibold text-primary mb-6 md:mb-8">
+          {lang === 'en' ? 'Experience' : 'Experiencia'}
+        </h2>
+        <div class="px-5 py-6 bg-white dark:bg-neutral-900 rounded-xl shadow-sm">
+          {
+            experiences.map((experience) => {
+              return (
+                <div class="pb-10 border-l border-gray-200 last:border-l-0 dark:border-neutral-700 last:pb-0">
+                  <AboutExperience
+                    dates={experience.dates}
+                    role={experience.role}
+                    company={experience.company}
+                    description={experience.description}
+                    logo={experience.logo}
+                  />
+                </div>
+              )
+            })
+          }
+        </div>
       </section>
     </div>
   </main>

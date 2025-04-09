@@ -46,7 +46,7 @@ type NavKey = `nav.${Page}`;
     <title>{title}</title>
 </head>
 <body class="min-h-screen bg-background-primary text-primary transition-colors duration-200">
-    <nav class="bg-background-primary border-b border-border">
+    <nav class="bg-background-primary border-b border-border sticky top-0 z-50 shadow-sm">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
@@ -117,65 +117,28 @@ type NavKey = `nav.${Page}`;
                 </div>
             </div>
             <!-- Mobile navigation -->
-            <div id="mobile-menu" class="hidden md:hidden">
-                <div class="px-2 pt-2 pb-3 space-y-1">
-                    {pages.map((page) => (
-                        <a
-                            href={getLocalizedPath(lang, page)}
-                            class={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                                route === page
-                                    ? 'text-primary bg-background-secondary'
-                                    : 'text-secondary hover:text-primary hover:bg-background-secondary'
-                            }`}
-                        >
-                            {t(`nav.${page}` as NavKey)}
-                        </a>
-                    ))}
-                    <div class="px-3 py-2 flex items-center justify-between">
-                        <span class="text-secondary">Theme</span>
+            <div id="mobile-menu" class="hidden md:hidden bg-background-primary border-t border-border">
+                <div class="container mx-auto px-4 py-2">
+                    <div class="flex flex-col space-y-2">
+                        {pages.map((page) => (
+                            <a
+                                href={getLocalizedPath(lang, page)}
+                                class={`text-sm font-medium py-2 transition-colors ${
+                                    route === page
+                                        ? 'text-primary'
+                                        : 'text-secondary hover:text-primary'
+                                }`}
+                            >
+                                {t(`nav.${page}` as NavKey)}
+                            </a>
+                        ))}
                         <button
                             id="mobile-theme-toggle"
-                            class="p-2 rounded-lg text-secondary hover:text-primary transition-colors"
+                            class="flex items-center text-sm font-medium py-2 text-secondary hover:text-primary transition-colors"
                             aria-label="Toggle theme"
                         >
-                            <svg
-                                id="mobile-sun-icon"
-                                class="w-5 h-5 hidden"
-                                fill="currentColor"
-                                viewBox="0 0 20 20"
-                            >
-                                <path
-                                    d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-                                />
-                            </svg>
-                            <svg
-                                id="mobile-moon-icon"
-                                class="w-5 h-5 hidden"
-                                fill="currentColor"
-                                viewBox="0 0 20 20"
-                            >
-                                <path
-                                    d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
-                                />
-                            </svg>
+                            <span id="mobile-theme-text">Theme</span>
                         </button>
-                    </div>
-                    <div class="px-3 py-2 flex items-center justify-between">
-                        <span class="text-secondary">Language</span>
-                        <div class="flex space-x-2">
-                            {['en', 'es'].map(language => (
-                                <button
-                                    data-lang={language}
-                                    class={`text-sm font-medium transition-colors ${
-                                        lang === language
-                                            ? 'text-primary'
-                                            : 'text-secondary hover:text-primary'
-                                    }`}
-                                >
-                                    {language.toUpperCase()}
-                                </button>
-                            ))}
-                        </div>
                     </div>
                 </div>
             </div>
