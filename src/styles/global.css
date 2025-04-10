@@ -1,23 +1,27 @@
 @import "tailwindcss";
 
 :root {
-    --foreground-rgb: 0, 0, 0;
+    --foreground-rgb: 15, 23, 42;  /* #0f172a - slate-900 */
     --background-rgb: 255, 255, 255;
-    --text-primary: #1a1a1a;
-    --text-secondary: #4a5568;
-    --bg-primary: #ffffff;
-    --bg-secondary: #f7fafc;
-    --border-color: #e2e8f0;
+    --text-primary: #0f172a;  /* slate-900 */
+    --text-secondary: #64748b;  /* slate-500 */
+    --bg-primary: #ffffff;  /* white */
+    --bg-secondary: #f8fafc;  /* slate-50 */
+    --border-color: #e2e8f0;  /* slate-200 */
+    --color-primary: #6366f1;  /* indigo-500 */
+    --color-secondary: #8b5cf6;  /* violet-500 */
 }
 
 .dark {
-    --foreground-rgb: 255, 255, 255;
-    --background-rgb: 0, 0, 0;
-    --text-primary: #ffffff;
-    --text-secondary: #a0aec0;
-    --bg-primary: #1a202c;
-    --bg-secondary: #2d3748;
-    --border-color: #4a5568;
+    --foreground-rgb: 241, 245, 249;  /* #f1f5f9 - slate-100 */
+    --background-rgb: 15, 23, 42;  /* #0f172a - slate-900 */
+    --text-primary: #f1f5f9;  /* slate-100 */
+    --text-secondary: #94a3b8;  /* slate-400 */
+    --bg-primary: #0f172a;  /* slate-900 */
+    --bg-secondary: #1e293b;  /* slate-800 */
+    --border-color: #334155;  /* slate-700 */
+    --color-primary: #818cf8;  /* indigo-400 */
+    --color-secondary: #a78bfa;  /* violet-400 */
 }
 
 html {
