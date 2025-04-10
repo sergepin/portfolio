@@ -10,14 +10,14 @@ interface Props {
 const { dates, role, company, description, logo } = Astro.props;
 ---
 
-<div class="relative pl-8 before:absolute before:left-0 before:top-0 before:size-2 before:rounded-full before:bg-gray-200 before:dark:bg-neutral-700">
+<div class="relative pl-8 before:absolute before:left-0 before:top-0 before:size-2 before:rounded-full before:bg-gray-200 before:bg-neutral-700">
   <div class="flex items-center gap-4 mb-2">
     <img src={logo} alt={`${company} logo`} class="size-8 rounded bg-white p-1 shadow-sm" />
     <div>
-      <h3 class="text-lg font-semibold text-primary dark:text-neutral-200">{role}</h3>
-      <p class="text-sm text-secondary dark:text-neutral-400">{company}</p>
+      <h3 class="text-lg font-semibold text-primary text-neutral-200">{role}</h3>
+      <p class="text-sm text-secondary text-neutral-400">{company}</p>
     </div>
   </div>
-  <p class="text-sm text-gray-500 dark:text-neutral-500 mb-2">{dates}</p>
-  <p class="text-secondary dark:text-neutral-400">{description}</p>
+  <p class="text-sm text-gray-500 text-neutral-500 mb-2">{dates}</p>
+  <p class="text-secondary text-neutral-400">{description}</p>
 </div> 
