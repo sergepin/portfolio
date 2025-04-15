@@ -15,33 +15,33 @@ const t = useTranslations(lang);
 
 const experiences = [
   {
-    dates: lang === 'en' ? "June 2018 · Present" : "Junio 2018 · Presente",
-    role: lang === 'en' ? "Front-end Engineer" : "Ingeniero Front-end",
-    company: "Full Truck Alliance",
-    description: lang === 'en' 
-      ? "Responsible for customer service and CRM system front-end development."
-      : "Responsable del desarrollo front-end del sistema de servicio al cliente y CRM.",
-    logo: "/assets/images/experiences/fta.ico"
+    dates: lang === 'en' ? "2021 · Present" : "2021 · Presente",
+    role: lang === 'en' ? "Fullstack Web Developer" : "Desarrollador Web Fullstack",
+    company: "Appxcale LLC",
+    description: lang === 'en'
+      ? "Supporting a major U.S. company managing over 50 e-commerce sites. Responsible for maintenance, new features, ADA compliance, and internal tools using React, Angular, Vue, NestJS, and NextJS. Leading projects and developing stored procedures in Microsoft SQL."
+      : "Brindo soporte a una empresa de EE. UU. que gestiona más de 50 sitios e-commerce. Encargado de mantenimiento, nuevas funcionalidades, cumplimiento ADA y herramientas internas con React, Angular, Vue, NestJS y NextJS. Lidero proyectos y desarrollo procedimientos almacenados en SQL Server.",
+    technologies: [
+      "React", "Angular", "Vue", "Next.js", "NestJS",
+      "Node.js", "C#", ".NET", "Microsoft SQL Server",
+      "GraphQL", "MongoDB", "PostgreSQL", "AWS (EC2, Lambda, S3)"
+    ],
+    logo: "/icons/appxcale.ico"
   },
   {
-    dates: lang === 'en' ? "July 2015 · June 2018" : "Julio 2015 · Junio 2018",
-    role: lang === 'en' ? "Front-end Engineer" : "Ingeniero Front-end",
-    company: "YOHO!",
+    dates: lang === 'en' ? "2020 · 2021" : "2020 · 2021",
+    role: lang === 'en' ? "Junior Developer" : "Desarrollador Junior",
+    company: "Biinteli S.A.S",
     description: lang === 'en'
-      ? "Responsible for mobile front-end development of e-commerce platform."
-      : "Responsable del desarrollo front-end móvil de la plataforma de comercio electrónico.",
-    logo: "/assets/images/experiences/yoho.ico"
-  },
-  {
-    dates: lang === 'en' ? "September 2014 · July 2015" : "Septiembre 2014 · Julio 2015",
-    role: lang === 'en' ? "Node.JS Developer" : "Desarrollador Node.JS",
-    company: "WuLian",
-    description: lang === 'en'
-      ? "Intern, involved in the development of Internet of Things cloud systems."
-      : "Pasante, involucrado en el desarrollo de sistemas en la nube para Internet de las Cosas.",
-    logo: "/assets/images/experiences/wulian.ico"
+      ? "Maintained and implemented new features for a retailer's e-commerce site. Led migration from AngularJS to Angular, coordinated with API providers, and managed deployments."
+      : "Mantenimiento e implementación de nuevas funcionalidades para un sitio e-commerce. Lideré la migración de AngularJS a Angular, coordiné con proveedores de API y gestioné despliegues.",
+    technologies: [
+      "AngularJS", "Angular", "Node.js", "JavaScript", "HTML", "CSS"
+    ],
+    logo: "/icons/biinteli.png"
   }
 ];
+
 ---
 
 <Layout title={t('about.title')}>
@@ -68,20 +68,23 @@ const experiences = [
       </section>
 
       <section>
-        <h2 class="text-2xl md:text-3xl font-semibold text-primary mb-6 md:mb-8">
-          {lang === 'en' ? 'Experience' : 'Experiencia'}
+        <h2 class="text-2xl md:text-3xl font-semibold text-[var(--text-primary)] mb-6 md:mb-8 relative inline-block">
+          <span class="relative z-10">{lang === 'en' ? 'Experience' : 'Experiencia'}</span>
+          <span class="absolute bottom-1 left-0 w-full h-2 bg-[var(--color-secondary)] opacity-20 rounded"></span>
         </h2>
-        <div class="px-5 py-6 bg-white bg-neutral-900 rounded-xl shadow-sm">
+        <div class="px-6 py-8 bg-[var(--bg-secondary)]/50 rounded-xl shadow-md ring-1 ring-[var(--border-color)] backdrop-blur-sm">
           {
-            experiences.map((experience) => {
+            experiences.map((experience, index) => {
               return (
-                <div class="pb-10 border-l border-gray-200 last:border-l-0 border-neutral-700 last:pb-0">
+                <div class={`${index !== experiences.length - 1 ? 'mb-16' : ''}`}>
                   <AboutExperience
                     dates={experience.dates}
                     role={experience.role}
                     company={experience.company}
                     description={experience.description}
                     logo={experience.logo}
+                    technologies={experience.technologies}
+                    technologiesLabel={lang === 'en' ? 'Technologies' : 'Tecnologías'}
                   />
                 </div>
               )
