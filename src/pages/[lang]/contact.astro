@@ -1,6 +1,10 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { languages } from '../../i18n/ui';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 export function getStaticPaths() {
   return [
@@ -8,128 +12,125 @@ export function getStaticPaths() {
     { params: { lang: 'es' } }
   ];
 }
-
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
 ---
 
-<Layout title={t('contact.title')}>
-  <main class="container mx-auto px-4 md:px-6 py-8 md:py-12">
-    <div class="max-w-4xl mx-auto">
-      <h1 class="text-3xl md:text-4xl font-bold text-primary text-center mb-8 md:mb-12">{t('contact.title')}</h1>
+<Layout title={t('contact.title')} description={t('contact.description')}>
+  <main class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold mb-8 text-primary">{t('contact.title')}</h1>
+    <p class="text-lg mb-8 text-secondary">{t('contact.description')}</p>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-        <!-- Contact Form -->
-        <div class="bg-background-primary rounded-lg shadow-lg p-6 md:p-8 transform hover:scale-[1.02] transition-transform duration-300">
-          <h2 class="text-xl md:text-2xl font-semibold text-primary mb-6">{t('contact.form.title')}</h2>
-          <form id="contactForm" class="space-y-4 md:space-y-6">
-            <div>
-              <label for="name" class="block text-sm md:text-base font-medium text-secondary mb-1">{t('contact.form.name')}</label>
-              <input type="text" id="name" name="name" required
-                class="w-full px-4 py-3 bg-background-secondary border border-border rounded-lg text-primary focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200">
-            </div>
-            <div>
-              <label for="email" class="block text-sm md:text-base font-medium text-secondary mb-1">{t('contact.form.email')}</label>
-              <input type="email" id="email" name="email" required
-                class="w-full px-4 py-3 bg-background-secondary border border-border rounded-lg text-primary focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200">
-            </div>
-            <div>
-              <label for="subject" class="block text-sm md:text-base font-medium text-secondary mb-1">{t('contact.form.subject')}</label>
-              <input type="text" id="subject" name="subject" required
-                class="w-full px-4 py-3 bg-background-secondary border border-border rounded-lg text-primary focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200">
-            </div>
-            <div>
-              <label for="message" class="block text-sm md:text-base font-medium text-secondary mb-1">{t('contact.form.message')}</label>
-              <textarea id="message" name="message" rows="4" required
-                class="w-full px-4 py-3 bg-background-secondary border border-border rounded-lg text-primary focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"></textarea>
-            </div>
-            <div id="formMessage" class="hidden text-sm font-medium"></div>
-            <button type="submit"
-              class="w-full px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium flex items-center justify-center">
-              <span id="submitText">{t('contact.form.send')}</span>
-              <svg id="submitSpinner" class="hidden animate-spin h-5 w-5 text-white ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="theme-bg p-6 rounded-lg shadow-lg theme-border">
+        <h2 class="text-2xl font-semibold mb-4 text-primary">{t('contact.form.title')}</h2>
+        <form id="contactForm" class="space-y-4">
+          <div>
+            <label for="name" class="block text-sm font-medium text-primary mb-1">
+              {t('contact.form.name')}
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              placeholder={t('contact.form.namePlaceholder')}
+              class="w-full px-4 py-2 border theme-border rounded-md focus:ring-2 focus:ring-primary bg-primary text-primary placeholder:text-secondary/70"
+            />
+          </div>
+          <div>
+            <label for="email" class="block text-sm font-medium text-primary mb-1">
+              {t('contact.form.email')}
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder={t('contact.form.emailPlaceholder')}
+              class="w-full px-4 py-2 border theme-border rounded-md focus:ring-2 focus:ring-primary bg-primary text-primary placeholder:text-secondary/70"
+            />
+          </div>
+          <div>
+            <label for="subject" class="block text-sm font-medium text-primary mb-1">
+              {t('contact.form.subject')}
+            </label>
+            <input
+              type="text"
+              id="subject"
+              name="subject"
+              required
+              placeholder={t('contact.form.subjectPlaceholder')}
+              class="w-full px-4 py-2 border theme-border rounded-md focus:ring-2 focus:ring-primary bg-primary text-primary placeholder:text-secondary/70"
+            />
+          </div>
+          <div>
+            <label for="message" class="block text-sm font-medium text-primary mb-1">
+              {t('contact.form.message')}
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              required
+              placeholder={t('contact.form.messagePlaceholder')}
+              rows="4"
+              class="w-full px-4 py-2 border theme-border rounded-md focus:ring-2 focus:ring-primary bg-primary text-primary placeholder:text-secondary/70"
+              class="w-full px-4 py-2 border theme-border rounded-md focus:ring-2 focus:ring-primary bg-primary text-primary"
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            class="w-full relative overflow-hidden bg-[color:var(--color-primary)] text-white font-medium py-3 px-4 rounded-md transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] transform group"
+          >
+            <div class="absolute inset-0 bg-black/20"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(255,255,255,0.15)_0%,_transparent_50%)]"></div>
+            <div class="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/5"></div>
+            <span class="submit-text flex items-center justify-center gap-2 relative">
+              {t('contact.form.send')}
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </span>
+            <span class="submit-spinner hidden">
+              <svg class="animate-spin h-5 w-5 text-white mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
               </svg>
-            </button>
-          </form>
-        </div>
+            </span>
+          </button>
+        </form>
+        <div id="formMessage" class="mt-4 text-center hidden"></div>
+      </div>
 
-        <!-- Contact Information -->
-        <div class="space-y-6 md:space-y-8">
-          <div class="bg-background-primary rounded-lg shadow-lg p-6 md:p-8 transform hover:scale-[1.02] transition-transform duration-300">
-            <h2 class="text-xl md:text-2xl font-semibold text-primary mb-6">{t('contact.info.title')}</h2>
-            <div class="space-y-6">
-              <div class="flex items-start group">
-                <div class="flex-shrink-0 p-2 bg-blue-100 bg-blue-900 rounded-lg">
-                  <svg class="h-6 w-6 text-blue-600 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <div class="ml-4">
-                  <p class="text-sm md:text-base font-medium text-primary">{t('contact.info.email')}</p>
-                  <a href="mailto:sergepin96@gmail.com" class="text-sm md:text-base text-blue-600 hover:text-blue-800 text-blue-400 hover:text-blue-300 transition-colors duration-200">
-                    sergepin96@gmail.com
-                  </a>
-                </div>
-              </div>
-
-              <div class="flex items-start group">
-                <div class="flex-shrink-0 p-2 bg-green-100 bg-green-900 rounded-lg">
-                  <svg class="h-6 w-6 text-green-600 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                </div>
-                <div class="ml-4">
-                  <p class="text-sm md:text-base font-medium text-primary">{t('contact.info.location')}</p>
-                  <p class="text-sm md:text-base text-secondary">Bucaramanga, Colombia</p>
-                </div>
-              </div>
-
-              <div class="flex items-start group">
-                <div class="flex-shrink-0 p-2 bg-blue-100 bg-blue-900 rounded-lg">
-                  <svg class="h-6 w-6 text-blue-600 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <div class="ml-4">
-                  <p class="text-sm md:text-base font-medium text-primary">{t('contact.info.linkedin')}</p>
-                  <a href="https://www.linkedin.com/in/sergepind/" target="_blank" rel="noopener noreferrer"
-                    class="text-sm md:text-base text-blue-600 hover:text-blue-800 text-blue-400 hover:text-blue-300 transition-colors duration-200">
-                    linkedin.com/in/sergepind
-                  </a>
-                </div>
-              </div>
+      <div class="space-y-8">
+        <div class="theme-bg p-6 rounded-lg shadow-lg theme-border">
+          <h2 class="text-2xl font-semibold mb-4 text-primary">{t('contact.info.title')}</h2>
+          <div class="space-y-4">
+            <div>
+              <h3 class="text-lg font-medium text-primary">{t('contact.info.email')}</h3>
+              <p class="text-secondary">sergepin96@gmail.com</p>
+            </div>
+            <div>
+              <h3 class="text-lg font-medium text-primary">{t('contact.info.location')}</h3>
+              <p class="text-secondary">Bucaramanga, Colombia</p>
+            </div>
+            <div>
+              <h3 class="text-lg font-medium text-primary">{t('contact.info.linkedin')}</h3>
+              <a href="https://linkedin.com/in/sergio" class="theme-text hover:text-secondary transition-colors duration-200">
+                linkedin.com/in/sergio
+              </a>
             </div>
           </div>
+        </div>
 
-          <!-- Social Media Links -->
-          <div class="bg-background-primary rounded-lg shadow-lg p-6 md:p-8 transform hover:scale-[1.02] transition-transform duration-300">
-            <h3 class="text-lg md:text-xl font-medium text-primary mb-6">{t('contact.social.title')}</h3>
-            <div class="flex space-x-6">
-              <a href="https://www.linkedin.com/in/sergepind/" target="_blank" rel="noopener noreferrer"
-                class="text-blue-600 hover:text-blue-800 text-blue-400 hover:text-blue-300 transition-colors duration-200">
-                <span class="sr-only">LinkedIn</span>
-                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-.88-.016-2.005-1.22-2.005-1.22 0-1.41.952-1.41 1.94v5.669h-3v-11h3v1.61c.42-.81 1.16-1.63 2.82-1.63 3.01 0 3.77 1.99 3.77 4.58v6.44z" />
-                </svg>
-              </a>
-              <a href="https://github.com/sergepin" target="_blank" rel="noopener noreferrer"
-                class="text-gray-600 hover:text-gray-800 text-gray-400 hover:text-gray-300 transition-colors duration-200">
-                <span class="sr-only">GitHub</span>
-                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path fill-rule="evenodd"
-                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.91-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                    clip-rule="evenodd" />
-                </svg>
-              </a>
-            </div>
+        <div class="theme-bg p-6 rounded-lg shadow-lg theme-border">
+          <h2 class="text-2xl font-semibold mb-4 text-primary">{t('contact.social.title')}</h2>
+          <div class="flex space-x-4">
+            <a href="https://github.com/sergepin" target="_blank" rel="noopener noreferrer" class="text-secondary hover:text-primary transition-colors duration-200">
+              <img src="/icons/github.svg" alt="GitHub" class="w-6 h-6 github-icon" />
+            </a>
+            <a href="https://www.linkedin.com/in/sergepind/" target="_blank" rel="noopener noreferrer" class="text-secondary hover:text-primary transition-colors duration-200">
+              <img src="/icons/LinkedIn.svg" alt="LinkedIn" class="w-6 h-6" />
+            </a>
           </div>
         </div>
       </div>
