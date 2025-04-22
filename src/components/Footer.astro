@@ -46,7 +46,18 @@ const socialLinks: SocialLink[] = [
                             }`}
                             aria-label={link.name}
                         >
-                            <img src={link.icon} alt={link.name} class="w-5 h-5" />
+                            <img 
+                                src={link.name === 'GitHub' ? '/icons/github.svg' : link.icon} 
+                                alt={link.name} 
+                                class={`w-5 h-5 ${link.name === 'GitHub' ? '[.dark_&]:hidden' : ''}`}
+                            />
+                            {link.name === 'GitHub' && (
+                                <img 
+                                    src="/icons/github-white.svg" 
+                                    alt={link.name} 
+                                    class="w-5 h-5 hidden [.dark_&]:block"
+                                />
+                            )}
                         </a>
                     ))
                 }

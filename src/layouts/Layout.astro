@@ -41,11 +41,10 @@ type NavKey = `nav.${Page}`;
       lang={lang}
     />
     <title>{title}</title>
-    <link rel="preload" href="/fonts/your-main-font.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
-<body class="min-h-screen h-fit text-primary transition-colors duration-300 relative">
+<body class="min-h-screen h-fit text-primary transition-colors duration-300 relative overflow-x-hidden">
     <!-- Fondo con cuadrícula y gradiente -->
     <div class="absolute inset-0 -z-10 h-full w-full bg-grid">
         <!-- Gradiente radial modo claro -->

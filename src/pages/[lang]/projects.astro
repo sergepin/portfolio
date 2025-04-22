@@ -2,6 +2,15 @@
 import Layout from '../../layouts/Layout.astro';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
+interface Project {
+  type: 'personal' | 'professional';
+  key: string;
+  image: string;
+  technologies: string[];
+  demoLink?: string;
+  codeLink?: string;
+}
+
 export function getStaticPaths() {
   return [
     { params: { lang: 'en' } },
@@ -45,12 +54,19 @@ const personalProjects = [
     key: 'invoice' as PersonalProjectKey,
     technologies: ['Angular', 'NestJS'],
     image: '/images/invoice-app.png',
-    codeLink: ''
+    codeLink: 'https://github.com/sergepin/invoice-fe'
   }
+];
+
+const projects: Project[] = [
+  // ... your projects data ...
 ];
 ---
 
-<Layout title={t('projects.title')}>
+<Layout 
+  title={t('projects.title')}
+  description={t('projects.description')}
+>
   <main class="container mx-auto px-6 md:px-12 py-12 md:py-16">
     <div class="max-w-5xl mx-auto space-y-12 md:space-y-16">
       <h1 class="text-4xl md:text-5xl font-extrabold text-primary text-center">{t('projects.title')}</h1>
@@ -72,13 +88,27 @@ const personalProjects = [
         <h2 class="text-2xl md:text-3xl font-semibold text-primary mb-6 md:mb-8">{t('projects.personal')}</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {personalProjects.map(project => (
-            <a href="#" class="bg-background-primary rounded-2xl shadow-lg p-6 md:p-8 block hover:shadow-2xl transition transform hover:scale-105">
-              <img src={project.image} alt={t(`projects.personal.${project.key}.name`)} class="w-full h-40 md:h-48 object-cover rounded-lg mb-4" />
+            <div class="bg-background-primary rounded-2xl shadow-lg p-6 md:p-8 block hover:shadow-2xl transition transform hover:scale-105">
+              <img 
+                src={project.image} 
+                alt={t(`projects.personal.${project.key}.name`)} 
+                class="w-full h-40 md:h-48 object-cover rounded-lg mb-4"
+                loading="lazy"
+                decoding="async"
+              />
               <h3 class="text-xl md:text-2xl font-semibold text-primary">{t(`projects.personal.${project.key}.name`)}</h3>
               <p class="text-base md:text-lg text-secondary mt-2">{t(`projects.personal.${project.key}.description`)}</p>
               <p class="text-sm md:text-base text-secondary mt-2 font-medium">{t('projects.technologies')}: {project.technologies.join(', ')}</p>
-              {project.codeLink && <a href={project.codeLink} target="_blank" class="text-blue-500 text-sm md:text-base mt-3 block font-medium underline">{t('projects.view-code')}</a>}
-            </a>
+              {project.codeLink ? (
+                <a href={project.codeLink} target="_blank" class="text-blue-500 text-sm md:text-base mt-3 block font-medium underline">
+                  {t('projects.view-code')}
+                </a>
+              ) : (
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-sky-100 text-sky-700 border border-sky-200 [.dark_&]:bg-purple-900/20 [.dark_&]:text-purple-300 [.dark_&]:border-purple-800/30">
+                  {lang === 'en' ? 'Private Repository' : 'Repositorio Privado'}
+                </span>
+              )}
+            </div>
           ))}
         </div>
       </section>
