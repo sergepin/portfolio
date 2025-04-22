@@ -2,6 +2,9 @@ html, body {
     margin: 0;
     width: 100%;
     height: fit-content;
+    min-height: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 html.dark {
@@ -25,6 +28,7 @@ html.light {
     width: 100%;
     min-height: calc(100vh - 64px);
     opacity: 1;
+    overflow-y: auto;
 }
 
 @keyframes fadeIn {
@@ -153,4 +157,32 @@ html.light .mobile-menu {
 
 html.dark .github-icon {
     content: url('/public/icons/github-white.svg');
+}
+
+html.light .form-input {
+    border: 2px solid #cbd5e1;
+}
+
+html.dark .form-input {
+    border: 2px solid #334155;
+}
+
+html.light .form-input:focus {
+    border-color: var(--color-primary);
+}
+
+html.dark .form-input:focus {
+    border-color: var(--color-primary);
+}
+
+.whatsapp-icon {
+    color: #25D366;
+}
+
+html.dark .whatsapp-icon {
+    color: #25D366;
+}
+
+html.light .whatsapp-icon {
+    color: #25D366;
 }
