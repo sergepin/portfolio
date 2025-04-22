@@ -15,125 +15,130 @@ export function getStaticPaths() {
 ---
 
 <Layout title={t('contact.title')} description={t('contact.description')}>
-  <section class="min-h-screen relative overflow-auto">
-    <div class="container px-6 py-10 mx-auto min-h-full">
-      <div class="lg:flex lg:items-center lg:-mx-10">
-        <div class="lg:w-1/2 lg:mx-10">
-          <h1 class="text-2xl font-semibold text-primary lg:text-3xl">{t('contact.title')}</h1>
+  <div class="w-full pt-32 pb-16">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="flex flex-col lg:flex-row lg:space-x-8 lg:items-start">
+          <!-- Formulario -->
+          <div class="flex-1 mb-12 lg:mb-0">
+            <h1 class="text-2xl font-semibold text-primary lg:text-3xl">{t('contact.title')}</h1>
 
-          <p class="mt-4 text-secondary">
-            {t('contact.description')}
-          </p>
+            <p class="mt-4 text-secondary">
+              {t('contact.description')}
+            </p>
 
-          <form id="contactForm" class="mt-12">
-            <div class="-mx-2 md:items-center md:flex">
-              <div class="flex-1 px-2">
-                <label class="block mb-2 text-sm text-primary">{t('contact.form.name')}</label>
+            <form id="contactForm" class="mt-8">
+              <div class="space-y-4 md:space-y-0 md:grid md:grid-cols-2 md:gap-4">
+                <div>
+                  <label class="block mb-2 text-sm text-primary">{t('contact.form.name')}</label>
+                  <input 
+                    type="text" 
+                    name="name"
+                    required
+                    placeholder={t('contact.form.namePlaceholder')} 
+                    class="form-input block w-full px-5 py-3 text-primary placeholder-secondary/70 bg-primary rounded-md focus:ring-2 focus:ring-primary" 
+                  />
+                </div>
+
+                <div>
+                  <label class="block mb-2 text-sm text-primary">{t('contact.form.email')}</label>
+                  <input 
+                    type="email" 
+                    name="email"
+                    required
+                    placeholder={t('contact.form.emailPlaceholder')} 
+                    class="form-input block w-full px-5 py-3 text-primary placeholder-secondary/70 bg-primary rounded-md focus:ring-2 focus:ring-primary" 
+                  />
+                </div>
+              </div>
+
+              <div class="mt-4">
+                <label class="block mb-2 text-sm text-primary">{t('contact.form.subject')}</label>
                 <input 
                   type="text" 
-                  name="name"
+                  name="subject"
                   required
-                  placeholder={t('contact.form.namePlaceholder')} 
-                  class="form-input block w-full px-5 py-3 mt-2 text-primary placeholder-secondary/70 bg-primary rounded-md focus:ring-2 focus:ring-primary" 
+                  placeholder={t('contact.form.subjectPlaceholder')} 
+                  class="form-input block w-full px-5 py-3 text-primary placeholder-secondary/70 bg-primary rounded-md focus:ring-2 focus:ring-primary" 
                 />
               </div>
 
-              <div class="flex-1 px-2 mt-4 md:mt-0">
-                <label class="block mb-2 text-sm text-primary">{t('contact.form.email')}</label>
-                <input 
-                  type="email" 
-                  name="email"
+              <div class="mt-4">
+                <label class="block mb-2 text-sm text-primary">{t('contact.form.message')}</label>
+                <textarea 
+                  name="message"
                   required
-                  placeholder={t('contact.form.emailPlaceholder')} 
-                  class="form-input block w-full px-5 py-3 mt-2 text-primary placeholder-secondary/70 bg-primary rounded-md focus:ring-2 focus:ring-primary" 
-                />
+                  placeholder={t('contact.form.messagePlaceholder')} 
+                  class="form-input block w-full h-32 px-5 py-3 text-primary placeholder-secondary/70 bg-primary rounded-md md:h-40 focus:ring-2 focus:ring-primary"
+                ></textarea>
               </div>
-            </div>
 
-            <div class="w-full mt-4">
-              <label class="block mb-2 text-sm text-primary">{t('contact.form.subject')}</label>
-              <input 
-                type="text" 
-                name="subject"
-                required
-                placeholder={t('contact.form.subjectPlaceholder')} 
-                class="form-input block w-full px-5 py-3 mt-2 text-primary placeholder-secondary/70 bg-primary rounded-md focus:ring-2 focus:ring-primary" 
-              />
-            </div>
-
-            <div class="w-full mt-4">
-              <label class="block mb-2 text-sm text-primary">{t('contact.form.message')}</label>
-              <textarea 
-                name="message"
-                required
-                placeholder={t('contact.form.messagePlaceholder')} 
-                class="form-input block w-full h-32 px-5 py-3 mt-2 text-primary placeholder-secondary/70 bg-primary rounded-md md:h-56 focus:ring-2 focus:ring-primary"
-              ></textarea>
-            </div>
-
-            <button type="submit" class="w-full relative overflow-hidden bg-[color:var(--color-primary)] text-white font-medium py-3 px-4 mt-4 rounded-md transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] transform group">
-              <div class="absolute inset-0 bg-black/20"></div>
-              <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-              <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(255,255,255,0.15)_0%,_transparent_50%)]"></div>
-              <div class="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/5"></div>
-              <span class="submit-text flex items-center justify-center gap-2 relative">
-                {t('contact.form.send')}
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                </svg>
-              </span>
-              <span class="submit-spinner hidden">
-                <svg class="animate-spin h-5 w-5 text-white mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-              </span>
-            </button>
-          </form>
-          <div id="formMessage" class="mt-4 text-center hidden"></div>
-        </div>
-
-        <div class="mt-12 lg:flex lg:mt-0 lg:flex-col lg:items-center lg:w-1/2 lg:mx-10">
-          <img class="hidden object-cover mx-auto rounded-full lg:block shrink-0 w-60 h-60" src="/images/serge.jpeg" alt="Sergio Pinzón">
-
-          <div class="mt-6 space-y-8 md:mt-8">
-            <div>
-              <h3 class="text-lg font-medium text-primary">{t('contact.info.location')}</h3>
-              <p class="text-secondary">Bucaramanga, Colombia</p>
-            </div>
-
-            <div>
-              <h3 class="text-lg font-medium text-primary">{t('contact.info.email')}</h3>
-              <p class="text-secondary">sergepin96@gmail.com</p>
-            </div>
-
-            <div>
-              <h3 class="text-lg font-medium text-primary">{t('contact.info.linkedin')}</h3>
-              <a href="https://linkedin.com/in/sergepind" target="_blank" rel="noopener noreferrer" class="text-secondary hover:text-primary transition-colors duration-200">
-                linkedin.com/in/sergepind
-              </a>
-            </div>
+              <button type="submit" class="w-full relative overflow-hidden bg-[color:var(--color-primary)] text-white font-medium py-3 px-4 mt-6 rounded-md transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] transform group">
+                <div class="absolute inset-0 bg-black/20"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(255,255,255,0.15)_0%,_transparent_50%)]"></div>
+                <div class="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/5"></div>
+                <span class="submit-text flex items-center justify-center gap-2 relative">
+                  {t('contact.form.send')}
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
+                </span>
+                <span class="submit-spinner hidden">
+                  <svg class="animate-spin h-5 w-5 text-white mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                </span>
+              </button>
+              <div id="formMessage" class="mt-4 text-center hidden"></div>
+            </form>
           </div>
 
-          <div class="mt-6 w-80 md:mt-8">
-            <h3 class="text-primary">{t('contact.social.title')}</h3>
+          <!-- Info y Social -->
+          <div class="lg:w-96">
+            <div class="lg:sticky lg:top-32">
+              <img class="hidden object-cover mx-auto rounded-full lg:block shrink-0 w-60 h-60" src="/images/serge.jpeg" alt="Sergio Pinzón">
 
-            <div class="flex mt-4 space-x-4">
-              <a href="https://github.com/sergepin" target="_blank" rel="noopener noreferrer" class="text-secondary hover:text-primary transition-colors duration-200">
-                <img src="/icons/github.svg" alt="GitHub" class="w-6 h-6 github-icon" />
-              </a>
-              <a href="https://www.linkedin.com/in/sergepind/" target="_blank" rel="noopener noreferrer" class="text-secondary hover:text-primary transition-colors duration-200">
-                <img src="/icons/LinkedIn.svg" alt="LinkedIn" class="w-6 h-6" />
-              </a>
-              <a href="https://wa.me/573152949792" target="_blank" rel="noopener noreferrer" class="text-[#25D366] hover:text-[#25D366]/80 transition-colors duration-200">
-                <img src="/icons/whatsapp.svg" alt="WhatsApp" class="w-6 h-6" />
-              </a>
+              <div class="mt-8 space-y-6">
+                <div>
+                  <h3 class="text-lg font-medium text-primary">{t('contact.info.location')}</h3>
+                  <p class="text-secondary">Bucaramanga, Colombia</p>
+                </div>
+
+                <div>
+                  <h3 class="text-lg font-medium text-primary">{t('contact.info.email')}</h3>
+                  <p class="text-secondary">sergepin96@gmail.com</p>
+                </div>
+
+                <div>
+                  <h3 class="text-lg font-medium text-primary">{t('contact.info.linkedin')}</h3>
+                  <a href="https://linkedin.com/in/sergepind" target="_blank" rel="noopener noreferrer" class="text-secondary hover:text-primary transition-colors duration-200">
+                    linkedin.com/in/sergepind
+                  </a>
+                </div>
+
+                <div class="pt-4">
+                  <h3 class="text-lg font-medium text-primary mb-4">{t('contact.social.title')}</h3>
+                  <div class="flex space-x-4">
+                    <a href="https://github.com/sergepin" target="_blank" rel="noopener noreferrer" class="text-secondary hover:text-primary transition-colors duration-200">
+                      <img src="/icons/github.svg" alt="GitHub" class="w-6 h-6 github-icon" />
+                    </a>
+                    <a href="https://www.linkedin.com/in/sergepind/" target="_blank" rel="noopener noreferrer" class="text-secondary hover:text-primary transition-colors duration-200">
+                      <img src="/icons/LinkedIn.svg" alt="LinkedIn" class="w-6 h-6" />
+                    </a>
+                    <a href="https://wa.me/573152949792" target="_blank" rel="noopener noreferrer" class="text-[#25D366] hover:text-[#25D366]/80 transition-colors duration-200">
+                      <img src="/icons/whatsapp.svg" alt="WhatsApp" class="w-6 h-6" />
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 </Layout>
 
 <script>
