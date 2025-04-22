@@ -14,8 +14,8 @@ export function getStaticPaths() {
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-import LogoWall from "../components/logoWall.astro";
-import SkillsList from "../React/SkillsList.tsx";
+import LogoWall from "../../components/logoWall.astro";
+import SkillsList from "../../components/SkillsList.tsx";
 ---
 
 <Layout 
@@ -23,7 +23,7 @@ import SkillsList from "../React/SkillsList.tsx";
   description={t('home.description')}
 >
   
-  <section class="text-primary text-[var(--white)] h-[calc(100vh-8rem)] flex items-center [@media(max-width:768px)]:h-auto [@media(max-width:768px)]:py-12" id="home">
+  <section class="text-primary text-[var(--white)] h-[calc(100vh-8rem)] flex items-center" id="home">
     <div class="max-w-6xl mx-auto px-4 w-full">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
         <div class="space-y-6">

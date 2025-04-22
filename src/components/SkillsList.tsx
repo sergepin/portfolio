@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
 
 const translations = {
   en: {
