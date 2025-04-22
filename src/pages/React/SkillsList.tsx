@@ -1,4 +1,65 @@
 import React, { useState } from "react";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
+const translations = {
+  en: {
+    title: "What I do?",
+    categories: {
+      "Frontend Development": {
+        name: "Frontend Development",
+        items: [
+          "Development of scalable e-commerce platforms",
+          "Migration and modernization of web apps (AngularJS to Angular, .NET to Next.js)",
+          "Responsive UI with React, Angular, Vue and Next.js",
+        ],
+      },
+      "Backend Development": {
+        name: "Backend Development",
+        items: [
+          "RESTful API and GraphQL development with Node.js and NestJS",
+          "Stored procedures and database management (PostgreSQL, MSSQL, MongoDB)",
+          "Cloud services integration (AWS EC2, Lambda, S3)",
+        ],
+      },
+      "AI Enthusiast": {
+        name: "AI Enthusiast",
+        items: [
+          "Learning about machine learning with Python",
+          "Experimenting with Generative AI tools and frameworks",
+        ],
+      },
+    },
+  },
+  es: {
+    title: "¿Qué hago?",
+    categories: {
+      "Frontend Development": {
+        name: "Desarrollo Frontend",
+        items: [
+          "Desarrollo de plataformas e-commerce escalables",
+          "Migración y modernización de apps web (AngularJS a Angular, .NET a Next.js)",
+          "Interfaces responsivas con React, Angular, Vue y Next.js",
+        ],
+      },
+      "Backend Development": {
+        name: "Desarrollo Backend",
+        items: [
+          "Desarrollo de APIs RESTful y GraphQL con Node.js y NestJS",
+          "Gestión de bases de datos y procedimientos almacenados (PostgreSQL, MSSQL, MongoDB)",
+          "Integración de servicios en la nube (AWS EC2, Lambda, S3)",
+        ],
+      },
+      "AI Enthusiast": {
+        name: "Entusiasta de la IA",
+        items: [
+          "Aprendizaje de modelos de machine learning con Python",
+          "Experimentación con herramientas y frameworks de IA generativa",
+        ],
+      },
+    },
+  },
+};
+
 
 const CategoryIcons = {
   "Frontend Development": (
@@ -52,26 +113,14 @@ const CategoryIcons = {
   ),
 };
 
-const SkillsList = () => {
-  const [openItem, setOpenItem] = useState<string | null>(null);
+interface Props {
+  url: URL;
+}
 
-  const skills = {
-    "Frontend Development": [
-      "Single Page Applications (SPAs)",
-      "Landing pages and business websites",
-      "Portfolio websites",
-    ],
-    "Backend Development": [
-      "RESTful API development",
-      "Database management",
-      "Server-side logic",
-    ],
-    "AI Enthusiast": [
-      "Machine learning models",
-      "Data analysis",
-      "AI-driven solutions",
-    ],
-  };
+const SkillsList: React.FC<Props> = ({ url }) => {
+  const [openItem, setOpenItem] = useState<string | null>(null);
+  const lang = getLangFromUrl(url) as keyof typeof translations;
+  const t = translations[lang];
 
   const toggleItem = (item: string) => {
     setOpenItem(openItem === item ? null : item);
@@ -80,21 +129,21 @@ const SkillsList = () => {
   return (
     <div className="text-left pt-3 md:pt-9">
       <h3 className="text-[var(--text-primary)] text-3xl md:text-4xl font-semibold md:mb-6">
-        What I do?
+        {t.title}
       </h3>
       <ul className="space-y-4 mt-4 text-lg">
-        {Object.entries(skills).map(([category, items]) => (
-          <li key={category} className="w-full">
+        {Object.entries(t.categories).map(([key, category]) => (
+          <li key={key} className="w-full">
             <div
-              onClick={() => toggleItem(category)}
+              onClick={() => toggleItem(key)}
               className="md:w-[400px] w-full bg-[var(--bg-secondary)]/50 rounded-2xl text-left hover:bg-[var(--bg-secondary)] transition-all border border-[var(--border-color)] cursor-pointer overflow-hidden shadow-md backdrop-blur-sm"
             >
               <div className="flex items-center gap-3 p-4">
-                {CategoryIcons[category as keyof typeof CategoryIcons]}
+                {CategoryIcons[key as keyof typeof CategoryIcons]}
                 <div className="flex items-center gap-2 flex-grow justify-between">
                   <div className="min-w-0 max-w-[200px] md:max-w-none overflow-hidden">
                     <span className="block truncate text-[var(--text-primary)] text-lg">
-                      {category}
+                      {category.name}
                     </span>
                   </div>
                   <svg
@@ -102,7 +151,7 @@ const SkillsList = () => {
                     viewBox="0 0 24 24"
                     fill="currentColor"
                     className={`w-6 h-6 text-[var(--text-primary)] transform transition-transform flex-shrink-0 ${
-                      openItem === category ? "rotate-180" : ""
+                      openItem === key ? "rotate-180" : ""
                     }`}
                   >
                     <path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"></path>
@@ -112,13 +161,13 @@ const SkillsList = () => {
 
               <div
                 className={`transition-all duration-300 px-4 ${
-                  openItem === category
+                  openItem === key
                     ? "max-h-[500px] pb-4 opacity-100"
                     : "max-h-0 opacity-0"
                 }`}
               >
                 <ul className="space-y-2 text-[var(--text-secondary)] text-sm">
-                  {items.map((item, index) => (
+                  {category.items.map((item: string, index: number) => (
                     <div key={index} className="flex items-center">
                       <span className="pl-1 text-[var(--color-primary)]">•</span>
                       <li className="pl-3">{item}</li>
