@@ -5,7 +5,6 @@ interface Props {
   image?: string;
   article?: boolean;
   lang: string;
-  canonicalURL?: string;
 }
 
 const {
@@ -14,55 +13,79 @@ const {
   image = '/images/og-image.jpg',
   article = false,
   lang,
-  canonicalURL = Astro.url.href
 } = Astro.props;
 
-const siteTitle = 'Sergio | Full Stack Developer';
-const fullTitle = `${title} | ${siteTitle}`;
-const siteDescription = 'Full Stack Developer specializing in modern web technologies. Building scalable and performant applications with React, Node.js, and cloud technologies.';
+// Ensure we have a valid base URL
+const baseURL = Astro.site?.toString() || 'https://sergiobarria.com';
+const canonicalURL = new URL(Astro.url.pathname, baseURL);
+const alternateEN = new URL(Astro.url.pathname.replace(/^\/[^\/]+/, '/en'), baseURL);
+const alternateES = new URL(Astro.url.pathname.replace(/^\/[^\/]+/, '/es'), baseURL);
 ---
 
+<!-- Global Metadata -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" type="image/x-icon" href="/icons/logo.ico" />
+<link rel="icon" type="image/svg+xml" href="/assets/logo.svg" />
+<link rel="apple-touch-icon" href="/icons/logo.png" />
+<meta name="generator" content={Astro.generator} />
+
+<!-- Canonical URL -->
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Alternate Language URLs -->
+<link rel="alternate" hreflang="en" href={alternateEN} />
+<link rel="alternate" hreflang="es" href={alternateES} />
+<link rel="alternate" hreflang="x-default" href={alternateEN} />
+
 <!-- Primary Meta Tags -->
-<title>{fullTitle}</title>
-<meta name="title" content={fullTitle}>
-<meta name="description" content={description}>
-<meta name="author" content="Sergio">
-<meta name="keywords" content="full stack developer, web developer, react developer, node.js developer, typescript, javascript, software engineer">
-<meta name="robots" content="index, follow">
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<meta name="author" content="Sergio Pinzón" />
+<meta name="image" content={new URL('/assets/logo.png', Astro.url)} />
 
 <!-- Open Graph / Facebook -->
-<meta property="og:type" content={article ? 'article' : 'website'}>
-<meta property="og:url" content={canonicalURL}>
-<meta property="og:title" content={fullTitle}>
-<meta property="og:description" content={description}>
-<meta property="og:image" content={new URL(image, Astro.url)}>
+<meta property="og:type" content={article ? 'article' : 'website'} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={new URL('/assets/logo.png', Astro.url)} />
+<meta property="og:locale" content={lang === 'en' ? 'en_US' : 'es_ES'} />
+<meta property="og:site_name" content="Sergio Pinzón - Software Developer" />
 
 <!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content={canonicalURL}>
-<meta property="twitter:title" content={fullTitle}>
-<meta property="twitter:description" content={description}>
-<meta property="twitter:image" content={new URL(image, Astro.url)}>
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={canonicalURL} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={new URL('/assets/logo.png', Astro.url)} />
+
+<!-- Additional SEO -->
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+<meta name="theme-color" content="#6366f1" />
+<meta name="color-scheme" content="dark light" />
+
+<!-- Performance & Security -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="referrer" content="no-referrer-when-downgrade" />
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
 
 <!-- Additional Meta Tags -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta charset="UTF-8">
-<meta name="theme-color" content="#ffffff">
+<meta name="keywords" content="full stack developer, web developer, react developer, node.js developer, typescript, javascript, software engineer">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content={siteTitle}>
+<meta name="apple-mobile-web-app-title" content="Sergio Pinzón - Software Developer">
 <meta name="format-detection" content="telephone=no">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="application-name" content={siteTitle}>
+<meta name="application-name" content="Sergio Pinzón - Software Developer">
 
 <!-- Favicon -->
 <link rel="icon" type="image/x-icon" href="/icons/logo.ico">
 <link rel="shortcut icon" type="image/x-icon" href="/icons/logo.ico">
 <link rel="apple-touch-icon" href="/icons/logo.png">
 <link rel="manifest" href="/manifest.json">
-
-<!-- Canonical URL -->
-<link rel="canonical" href={canonicalURL}>
 
 <!-- Language -->
 <html lang={lang}> 

@@ -18,7 +18,10 @@ import LogoWall from "../components/logoWall.astro";
 import SkillsList from "../React/SkillsList.tsx";
 ---
 
-<Layout title={t('home.title')}>
+<Layout 
+  title={t('home.title')}
+  description={t('home.description')}
+>
   
   <section class="text-primary text-[var(--white)] h-screen flex items-center" id="home">
     <div class="max-w-6xl mx-auto px-4 w-full">
@@ -87,44 +90,5 @@ import SkillsList from "../React/SkillsList.tsx";
       </div>
     </div>
   </section>
-  
-  <style is:global>
-    .shiny-sec {
-      background: linear-gradient(135deg, #a476ff 25%, #eee5ff 50%, #a476ff 75%);
-      background-size: 400% 100%;
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      animation: shine 3s linear infinite;
-    }
-  
-    @keyframes shine {
-      0% {
-        background-position: 100% 50%;
-      }
-      30%,
-      70% {
-        background-position: 0% 50%;
-      }
-    }
 
-    /* Hide scrollbar for all elements */
-    * {
-      scrollbar-width: none; /* Firefox */
-      -ms-overflow-style: none; /* IE and Edge */
-    }
-
-    /* Hide scrollbar for Chrome, Safari and Opera */
-    *::-webkit-scrollbar {
-      display: none;
-    }
-
-    /* Ensure the body and html don't overflow */
-    html, body {
-      overflow: hidden;
-      margin: 0;
-      padding: 0;
-      height: 100%;
-    }
-  </style>
 </Layout> 

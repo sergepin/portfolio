@@ -13,7 +13,7 @@
     --color-secondary: #8b5cf6;  /* violet-500 */
 }
 
-.dark {
+:root.dark {
     --foreground-rgb: 241, 245, 249;  /* #f1f5f9 - slate-100 */
     --background-rgb: 15, 23, 42;  /* #0f172a - slate-900 */
     --text-primary: #f1f5f9;  /* slate-100 */
@@ -26,18 +26,45 @@
     --color-secondary: #a78bfa;  /* violet-400 */
 }
 
-html {
+body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-html.light {
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
+/* Shiny text effect */
+.shiny-sec {
+    background: linear-gradient(135deg, #a476ff 25%, #eee5ff 50%, #a476ff 75%);
+    background-size: 400% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shine 3s linear infinite;
 }
 
-html.dark {
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
+@keyframes shine {
+    0% {
+        background-position: 100% 50%;
+    }
+    30%,
+    70% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Hide scrollbar for all elements */
+* {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+*::-webkit-scrollbar {
+    display: none;
+}
+
+/* Ensure the body and html don't overflow */
+html, body {
+    margin: 0;
+    padding: 0;
 }

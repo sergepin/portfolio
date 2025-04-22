@@ -64,6 +64,7 @@ export const ui = {
     'contact.info.location': 'Location',
     'contact.info.linkedin': 'LinkedIn',
     'contact.social.title': 'Social Media',
+    'footer.copyright': 'Sergio Pinzón. All rights reserved.',
   },
   es: {
     'nav.home': 'Inicio',
@@ -121,6 +122,7 @@ export const ui = {
     'contact.info.location': 'Ubicación',
     'contact.info.linkedin': 'LinkedIn',
     'contact.social.title': 'Redes Sociales',
+    'footer.copyright': 'Sergio Pinzón. Todos los derechos reservados.',
   },
 } as const;
 

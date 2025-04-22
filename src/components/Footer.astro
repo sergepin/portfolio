@@ -1,0 +1,56 @@
+---
+import type { SocialLink } from '../types';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const currentYear = new Date().getFullYear();
+
+const socialLinks: SocialLink[] = [
+    {
+        name: 'GitHub',
+        url: 'https://github.com/sergepin',
+        icon: '/icons/github.svg'
+    },
+    {
+        name: 'LinkedIn',
+        url: 'https://www.linkedin.com/in/sergepind/',
+        icon: '/icons/LinkedIn.svg'
+    },
+    {
+        name: 'WhatsApp',
+        url: 'https://wa.me/573152949792',
+        icon: '/icons/whatsapp.svg'
+    }
+];
+
+---
+<footer class="mt-auto">
+    <div class="container mx-auto px-4 py-6">
+        <div class="flex flex-col items-center justify-between gap-4 sm:flex-row">
+            <p class="text-sm text-secondary">
+                © {currentYear} {t('footer.copyright')}
+            </p>
+            <div class="flex items-center gap-4">
+                {
+                    socialLinks.map((link) => (
+                        <a
+                            href={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class={`transition-colors duration-200 ${
+                                link.name === 'WhatsApp' 
+                                    ? 'text-[#25D366] hover:text-[#25D366]/80' 
+                                    : 'text-secondary hover:text-primary'
+                            }`}
+                            aria-label={link.name}
+                        >
+                            <img src={link.icon} alt={link.name} class="w-5 h-5" />
+                        </a>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</footer> 
