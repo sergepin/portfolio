@@ -54,4 +54,6 @@ export function initializeContactForm() {
       submitSpinner.classList.add('hidden');
     }
   });
-} 
+}
+
+initializeContactForm();

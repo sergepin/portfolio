@@ -4,7 +4,8 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "npm run build:scripts && astro build",
+    "build:scripts": "rimraf public/scripts && tsc --project tsconfig.scripts.json",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -26,5 +27,8 @@
     "react-dom": "^19.1.0",
     "tailwindcss": "^4.1.0",
     "three": "^0.175.0"
+  },
+  "devDependencies": {
+    "rimraf": "^6.0.1"
   }
 }
