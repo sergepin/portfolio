@@ -25,9 +25,9 @@ export function initializeContactForm() {
     };
 
     // Cargar las variables del entorno con el prefijo NEXT_PUBLIC_ 
-    const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
-    const allowedOrigin = process.env.NEXT_PUBLIC_ALLOWED_ORIGIN;
+    const apiBaseUrl = "https://secure-email-api.vercel.app";
+    const apiKey = "SG.1234567890";
+    const allowedOrigin = "https://sergiopinzon.dev";
 
     // Verificación de que las variables de entorno están definidas
     if (!apiBaseUrl || !apiKey || !allowedOrigin) {
