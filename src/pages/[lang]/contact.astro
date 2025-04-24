@@ -15,7 +15,7 @@ export function getStaticPaths() {
 ---
 
 <Layout title={t('contact.title')} description={t('contact.description')}>
-  <div class="w-full pt-32 pb-16">
+  <div class="w-full pt-12 pb-8">
     <div class="container mx-auto px-4">
       <div class="max-w-6xl mx-auto">
         <div class="flex flex-col lg:flex-row lg:space-x-8 lg:items-start">
@@ -30,47 +30,76 @@ export function getStaticPaths() {
             <form id="contactForm" class="mt-8">
               <div class="space-y-4 md:space-y-0 md:grid md:grid-cols-2 md:gap-4">
                 <div>
-                  <label class="block mb-2 text-sm text-primary">{t('contact.form.name')}</label>
-                  <input 
-                    type="text" 
-                    name="name"
-                    required
-                    placeholder={t('contact.form.namePlaceholder')} 
-                    class="form-input block w-full px-5 py-3 text-primary placeholder-secondary/70 bg-primary rounded-md focus:ring-2 focus:ring-primary" 
-                  />
+                  <label class="block mb-2 text-sm font-medium text-primary">{t('contact.form.name')}</label>
+                  <div class="relative">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-secondary/60" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                      </svg>
+                    </div>
+                    <input 
+                      type="text" 
+                      name="name"
+                      required
+                      placeholder={t('contact.form.namePlaceholder') || "Sergio Pinzón"} 
+                      class="form-input block w-full pl-10 pr-5 py-3 text-primary placeholder-secondary/70 bg-primary rounded-md focus:ring-2 focus:ring-primary transition-all duration-300 border border-secondary/10" 
+                    />
+                  </div>
                 </div>
 
                 <div>
-                  <label class="block mb-2 text-sm text-primary">{t('contact.form.email')}</label>
+                  <label class="block mb-2 text-sm font-medium text-primary">{t('contact.form.email')}</label>
+                  <div class="relative">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-secondary/60" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                      </svg>
+                    </div>
+                    <input 
+                      type="email" 
+                      name="email"
+                      required
+                      placeholder={t('contact.form.emailPlaceholder') || "example@email.com"} 
+                      class="form-input block w-full pl-10 pr-5 py-3 text-primary placeholder-secondary/70 bg-primary rounded-md focus:ring-2 focus:ring-primary transition-all duration-300 border border-secondary/10" 
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-4">
+                <label class="block mb-2 text-sm font-medium text-primary">{t('contact.form.subject')}</label>
+                <div class="relative">
+                  <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-secondary/60" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M5 3a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2V5a2 2 0 00-2-2H5zm0 2h10v7h-2l-1 2H8l-1-2H5V5z" clip-rule="evenodd" />
+                    </svg>
+                  </div>
                   <input 
-                    type="email" 
-                    name="email"
+                    type="text" 
+                    name="subject"
                     required
-                    placeholder={t('contact.form.emailPlaceholder')} 
-                    class="form-input block w-full px-5 py-3 text-primary placeholder-secondary/70 bg-primary rounded-md focus:ring-2 focus:ring-primary" 
+                    placeholder={t('contact.form.subjectPlaceholder') || "Project Inquiry"} 
+                    class="form-input block w-full pl-10 pr-5 py-3 text-primary placeholder-secondary/70 bg-primary rounded-md focus:ring-2 focus:ring-primary transition-all duration-300 border border-secondary/10" 
                   />
                 </div>
               </div>
 
               <div class="mt-4">
-                <label class="block mb-2 text-sm text-primary">{t('contact.form.subject')}</label>
-                <input 
-                  type="text" 
-                  name="subject"
-                  required
-                  placeholder={t('contact.form.subjectPlaceholder')} 
-                  class="form-input block w-full px-5 py-3 text-primary placeholder-secondary/70 bg-primary rounded-md focus:ring-2 focus:ring-primary" 
-                />
-              </div>
-
-              <div class="mt-4">
-                <label class="block mb-2 text-sm text-primary">{t('contact.form.message')}</label>
-                <textarea 
-                  name="message"
-                  required
-                  placeholder={t('contact.form.messagePlaceholder')} 
-                  class="form-input block w-full h-32 px-5 py-3 text-primary placeholder-secondary/70 bg-primary rounded-md md:h-40 focus:ring-2 focus:ring-primary"
-                ></textarea>
+                <label class="block mb-2 text-sm font-medium text-primary">{t('contact.form.message')}</label>
+                <div class="relative">
+                  <div class="absolute top-3 left-3 pointer-events-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-secondary/60" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd" />
+                    </svg>
+                  </div>
+                  <textarea 
+                    name="message"
+                    required
+                    placeholder={t('contact.form.messagePlaceholder') || "Your message here..."} 
+                    class="form-input block w-full pl-10 pr-5 py-3 text-primary placeholder-secondary/70 bg-primary rounded-md md:h-40 focus:ring-2 focus:ring-primary transition-all duration-300 border border-secondary/10 h-32"
+                  ></textarea>
+                </div>
               </div>
 
               <button type="submit" class="w-full relative overflow-hidden bg-[color:var(--color-primary)] text-white font-medium py-3 px-4 mt-6 rounded-md transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] transform group">
@@ -98,36 +127,58 @@ export function getStaticPaths() {
           <!-- Info y Social -->
           <div class="lg:w-96">
             <div class="lg:sticky lg:top-32">
-              <img class="hidden object-cover mx-auto rounded-full lg:block shrink-0 w-60 h-60" src="/images/serge.jpeg" alt="Sergio Pinzón">
+              <div class="relative mx-auto w-60 h-60">
+                <div class="absolute inset-0 rounded-full profile-glow"></div>
+                <img class="relative object-cover mx-auto rounded-full lg:block shrink-0 w-60 h-60 border-2 border-secondary/10" src="/images/serge.jpeg" alt="Sergio Pinzón">
+              </div>
 
               <div class="mt-8 space-y-6">
-                <div>
-                  <h3 class="text-lg font-medium text-primary">{t('contact.info.location')}</h3>
-                  <p class="text-secondary">Bucaramanga, Colombia</p>
+                <div class="flex items-center p-4 rounded-lg bg-secondary/5 backdrop-blur-sm  transition-all duration-300 hover:bg-secondary/10">
+                  <div class="mr-4 text-primary">
+                    <img src="/icons/map-pin-icon.svg" alt="LinkedIn" class="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-medium text-primary">{t('contact.info.location')}</h3>
+                    <p class="text-secondary">Bucaramanga, Colombia</p>
+                  </div>
                 </div>
 
-                <div>
-                  <h3 class="text-lg font-medium text-primary">{t('contact.info.email')}</h3>
-                  <p class="text-secondary">sergepin96@gmail.com</p>
+                <div class="flex items-center p-4 rounded-lg bg-secondary/5 backdrop-blur-sm  transition-all duration-300 hover:bg-secondary/10">
+                  <div class="mr-4 text-primary">
+                    <img
+                      src="/icons/email-icon.svg"
+                      alt="Email"
+                      class="w-6 h-6 email-icon"
+                    />
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-medium text-primary">{t('contact.info.email')}</h3>
+                    <p class="text-secondary">sergepin96@gmail.com</p>
+                  </div>
                 </div>
 
-                <div>
-                  <h3 class="text-lg font-medium text-primary">{t('contact.info.linkedin')}</h3>
-                  <a href="https://linkedin.com/in/sergepind" target="_blank" rel="noopener noreferrer" class="text-secondary hover:text-primary transition-colors duration-200">
-                    linkedin.com/in/sergepind
-                  </a>
+                <div class="flex items-center p-4 rounded-lg bg-secondary/5 backdrop-blur-sm  transition-all duration-300 hover:bg-secondary/10">
+                  <div class="mr-4 text-primary">
+                    <img src="/icons/LinkedIn.svg" alt="LinkedIn" class="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-medium text-primary">{t('contact.info.linkedin')}</h3>
+                    <a href="https://linkedin.com/in/sergepind" target="_blank" rel="noopener noreferrer" class="text-secondary hover:text-primary transition-colors duration-200">
+                      linkedin.com/in/sergepind
+                    </a>
+                  </div>
                 </div>
 
                 <div class="pt-4">
                   <h3 class="text-lg font-medium text-primary mb-4">{t('contact.social.title')}</h3>
                   <div class="flex space-x-4">
-                    <a href="https://github.com/sergepin" target="_blank" rel="noopener noreferrer" class="text-secondary hover:text-primary transition-colors duration-200">
+                    <a href="https://github.com/sergepin" target="_blank" rel="noopener noreferrer" class="p-3 rounded-full bg-secondary/5 border border-secondary/10 hover:bg-secondary/10 transition-all duration-300">
                       <img src="/icons/github.svg" alt="GitHub" class="w-6 h-6 github-icon" />
                     </a>
-                    <a href="https://www.linkedin.com/in/sergepind/" target="_blank" rel="noopener noreferrer" class="text-secondary hover:text-primary transition-colors duration-200">
+                    <a href="https://www.linkedin.com/in/sergepind/" target="_blank" rel="noopener noreferrer" class="p-3 rounded-full bg-secondary/5 border border-secondary/10 hover:bg-secondary/10 transition-all duration-300">
                       <img src="/icons/LinkedIn.svg" alt="LinkedIn" class="w-6 h-6" />
                     </a>
-                    <a href="https://wa.me/573152949792" target="_blank" rel="noopener noreferrer" class="text-[#25D366] hover:text-[#25D366]/80 transition-colors duration-200">
+                    <a href="https://wa.me/573152949792" target="_blank" rel="noopener noreferrer" class="p-3 rounded-full bg-secondary/5 border border-secondary/10 hover:bg-[#25D366]/10 transition-all duration-300">
                       <img src="/icons/whatsapp.svg" alt="WhatsApp" class="w-6 h-6" />
                     </a>
                   </div>

@@ -68,3 +68,22 @@ html, body {
     margin: 0;
     padding: 0;
 }
+
+.profile-glow {
+    filter: blur(15px);
+    opacity: 0.4;
+    background: var(--color-primary);
+    transform: scale(0.85);
+  }
+
+  .light .profile-glow {
+    opacity: 0.3;
+  }
+
+html.light .email-icon {
+    filter: none;
+  }
+
+  html.dark .email-icon {
+    filter: brightness(0) invert(1);
+  }
