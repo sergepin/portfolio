@@ -1,0 +1,16 @@
+{
+    "redirects": [
+      {
+        "source": "/",
+        "has": [{ "type": "host", "value": "www.sergiopinzon.dev" }],
+        "destination": "https://www.sergiopinzon.dev/en",
+        "permanent": false
+      },
+      {
+        "source": "/:path*",
+        "has": [{ "type": "host", "value": "sergiopinzon.dev" }],
+        "destination": "https://www.sergiopinzon.dev/:path*",
+        "permanent": true
+      }
+    ]
+  }
