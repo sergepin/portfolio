@@ -12,6 +12,15 @@ export function initializeContactForm() {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    // Obtener el token de Turnstile
+    const turnstileResponse = await window.turnstile.getResponse();
+    if (!turnstileResponse) {
+      formMessage.textContent = 'Please complete the Turnstile verification';
+      formMessage.classList.remove('hidden', 'text-green-600');
+      formMessage.classList.add('text-red-600');
+      return;
+    }
+
     submitText.textContent = 'Sending...';
     submitSpinner.classList.remove('hidden');
     formMessage.classList.add('hidden');
@@ -21,7 +30,8 @@ export function initializeContactForm() {
       name: formData.get('name')?.toString() || '',
       email: formData.get('email')?.toString() || '',
       subject: formData.get('subject')?.toString() || '',
-      message: formData.get('message')?.toString() || ''
+      message: formData.get('message')?.toString() || '',
+      'cf-turnstile-response': turnstileResponse
     };
 
     // Cargar las variables del entorno con el prefijo NEXT_PUBLIC_ 
@@ -53,6 +63,8 @@ export function initializeContactForm() {
         formMessage.classList.remove('hidden', 'text-red-600');
         formMessage.classList.add('text-green-600');
         form.reset();
+        // Reset Turnstile
+        window.turnstile.reset();
       } else {
         throw new Error(result.message || 'Error sending message');
       }
@@ -60,11 +72,23 @@ export function initializeContactForm() {
       formMessage.textContent = error instanceof Error ? error.message : 'Error sending message. Please try again.';
       formMessage.classList.remove('hidden', 'text-green-600');
       formMessage.classList.add('text-red-600');
+      // Reset Turnstile en caso de error
+      window.turnstile.reset();
     } finally {
       submitText.textContent = 'Send Message';
       submitSpinner.classList.add('hidden');
     }
   });
+}
+
+// Agregar la declaración de tipos para Turnstile
+declare global {
+  interface Window {
+    turnstile: {
+      getResponse: () => Promise<string>;
+      reset: () => void;
+    };
+  }
 }
 
 initializeContactForm();
