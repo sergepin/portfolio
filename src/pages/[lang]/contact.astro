@@ -5,6 +5,7 @@ import { languages } from '../../i18n/ui';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 
 export function getStaticPaths() {
   return [
@@ -109,7 +110,7 @@ export function getStaticPaths() {
               <div class="mt-4 flex justify-center">
                 <div
                   class="cf-turnstile"
-                  data-sitekey="1x00000000000000000000AA"
+                  data-sitekey={TURNSTILE_SITE_KEY}
                   data-size="flexible"
                 ></div>
             </div>
