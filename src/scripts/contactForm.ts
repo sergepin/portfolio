@@ -45,7 +45,7 @@ export function initializeContactForm() {
         headers: {
           'Content-Type': 'application/json',
           'x-api-key': apiKey,
-          'Origin': allowedOrigin
+          'origin': allowedOrigin
         },
         body: JSON.stringify(data)
       });
