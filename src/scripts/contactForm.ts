@@ -34,19 +34,13 @@ export function initializeContactForm() {
       'cf-turnstile-response': turnstileResponse
     };
 
-    // Cargar las variables del entorno con el prefijo NEXT_PUBLIC_ 
-    const apiBaseUrl = "https://secure-email-api.vercel.app";
-    const apiKey = "SG.1234567890";
+    // Configuración para la función Lambda
+    const lambdaUrl = "https://p6hz5dey5elprttd47tdfax6mq0rymxy.lambda-url.us-east-2.on.aws/";
+    const apiKey = "SG.1234567890"; // Reemplaza con tu API key real
     const allowedOrigin = "https://sergiopinzon.dev";
 
-    // Verificación de que las variables de entorno están definidas
-    if (!apiBaseUrl || !apiKey || !allowedOrigin) {
-      console.error('API base URL, API Key, or Allowed Origin is not defined in .env');
-      return;
-    }
-
     try {
-      const response = await fetch(`/api/contact`, {
+      const response = await fetch(lambdaUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
