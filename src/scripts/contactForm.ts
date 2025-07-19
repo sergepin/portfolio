@@ -45,7 +45,8 @@ export function initializeContactForm() {
         headers: {
           'Content-Type': 'application/json',
           'x-api-key': apiKey,
-          'origin': allowedOrigin
+          'origin': allowedOrigin,   // Esto se incluye como parte de la solicitud
+          'X-Custom-Origin': allowedOrigin   // Puedes usar o quitar este encabezado dependiendo de tu configuración en la Lambda
         },
         body: JSON.stringify(data)
       });
@@ -57,10 +58,9 @@ export function initializeContactForm() {
         formMessage.classList.remove('hidden', 'text-red-600');
         formMessage.classList.add('text-green-600');
         form.reset();
-        // Reset Turnstile
         window.turnstile.reset();
-        
-        // Track successful form submission
+
+        // Track successful form submission (Google Tag Manager)
         if (window.dataLayer) {
           window.dataLayer.push({
             event: 'form_submit',
@@ -70,16 +70,19 @@ export function initializeContactForm() {
           });
         }
       } else {
-        throw new Error(result.message || 'Error sending message');
+        // Mejor manejo de error con detalles específicos
+        const errorMessage = result.message || 'Error sending message. Please try again.';
+        formMessage.textContent = errorMessage;
+        formMessage.classList.remove('hidden', 'text-green-600');
+        formMessage.classList.add('text-red-600');
       }
     } catch (error) {
       formMessage.textContent = error instanceof Error ? error.message : 'Error sending message. Please try again.';
       formMessage.classList.remove('hidden', 'text-green-600');
       formMessage.classList.add('text-red-600');
-      // Reset Turnstile en caso de error
       window.turnstile.reset();
-      
-      // Track failed form submission
+
+      // Track failed form submission (Google Tag Manager)
       if (window.dataLayer) {
         window.dataLayer.push({
           event: 'form_submit',
