@@ -1,0 +1,84 @@
+---
+import { analyticsConfig } from '../config/analytics';
+
+// Solo renderizar si Google Tag Manager está habilitado
+const shouldRender = analyticsConfig.googleTagManager.enabled;
+const GTM_ID = analyticsConfig.googleTagManager.containerId;
+---
+
+{shouldRender && (
+  <>
+    <!-- Google Tag Manager -->
+    <script>
+      (function(w: any, d: Document, s: string, l: string, i: string) {
+        w[l] = w[l] || [];
+        w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+        var f = d.getElementsByTagName(s)[0] as HTMLElement;
+        var j = d.createElement(s) as HTMLScriptElement;
+        var dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        if (f.parentNode) {
+          f.parentNode.insertBefore(j, f);
+        }
+      })(window, document, 'script', 'dataLayer', '{GTM_ID}');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Eventos personalizados para tracking mejorado -->
+    <script>
+      // Track page views con GTM
+      document.addEventListener('astro:page-load', () => {
+        if (window.dataLayer) {
+          window.dataLayer.push({
+            event: 'page_view',
+            page_title: document.title,
+            page_location: window.location.href,
+            page_category: 'portfolio'
+          });
+        }
+      });
+
+      // Track clicks en enlaces externos
+      document.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement;
+        const link = target?.closest('a');
+        if (link && link.hostname !== window.location.hostname && window.dataLayer) {
+          window.dataLayer.push({
+            event: 'click_external_link',
+            link_url: link.href,
+            link_text: link.textContent,
+            page_location: window.location.href
+          });
+        }
+      });
+
+      // Track descargas de CV
+      document.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement;
+        const link = target?.closest('a');
+        if (link && link.href.includes('.pdf') && window.dataLayer) {
+          window.dataLayer.push({
+            event: 'download',
+            file_name: link.href.split('/').pop(),
+            file_type: 'pdf',
+            page_location: window.location.href
+          });
+        }
+      });
+
+      // Track cambios de idioma
+      document.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement;
+        const link = target?.closest('a');
+        if (link && (link.href.includes('/en/') || link.href.includes('/es/')) && window.dataLayer) {
+          window.dataLayer.push({
+            event: 'language_change',
+            new_language: link.href.includes('/en/') ? 'english' : 'spanish',
+            page_location: window.location.href
+          });
+        }
+      });
+    </script>
+  </>
+)} 

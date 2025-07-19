@@ -65,6 +65,16 @@ export function initializeContactForm() {
         form.reset();
         // Reset Turnstile
         window.turnstile.reset();
+        
+        // Track successful form submission
+        if (window.dataLayer) {
+          window.dataLayer.push({
+            event: 'form_submit',
+            form_name: 'contact_form',
+            form_status: 'success',
+            page_location: window.location.href
+          });
+        }
       } else {
         throw new Error(result.message || 'Error sending message');
       }
@@ -74,6 +84,17 @@ export function initializeContactForm() {
       formMessage.classList.add('text-red-600');
       // Reset Turnstile en caso de error
       window.turnstile.reset();
+      
+      // Track failed form submission
+      if (window.dataLayer) {
+        window.dataLayer.push({
+          event: 'form_submit',
+          form_name: 'contact_form',
+          form_status: 'error',
+          error_message: error instanceof Error ? error.message : 'Unknown error',
+          page_location: window.location.href
+        });
+      }
     } finally {
       submitText.textContent = 'Send Message';
       submitSpinner.classList.add('hidden');
@@ -81,13 +102,14 @@ export function initializeContactForm() {
   });
 }
 
-// Agregar la declaración de tipos para Turnstile
+// Agregar la declaración de tipos para Turnstile y Google Tag Manager
 declare global {
   interface Window {
     turnstile: {
       getResponse: () => Promise<string>;
       reset: () => void;
     };
+    dataLayer: any[];
   }
 }
 
