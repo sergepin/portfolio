@@ -46,7 +46,7 @@ export function initializeContactForm() {
     }
 
     try {
-      const response = await fetch(`${apiBaseUrl}/send-email`, {
+      const response = await fetch(`/api/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

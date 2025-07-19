@@ -9,6 +9,14 @@ export function initializeContactForm() {
     }
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
+        // Obtener el token de Turnstile
+        const turnstileResponse = await window.turnstile.getResponse();
+        if (!turnstileResponse) {
+            formMessage.textContent = 'Please complete the Turnstile verification';
+            formMessage.classList.remove('hidden', 'text-green-600');
+            formMessage.classList.add('text-red-600');
+            return;
+        }
         submitText.textContent = 'Sending...';
         submitSpinner.classList.remove('hidden');
         formMessage.classList.add('hidden');
@@ -17,7 +25,8 @@ export function initializeContactForm() {
             name: formData.get('name')?.toString() || '',
             email: formData.get('email')?.toString() || '',
             subject: formData.get('subject')?.toString() || '',
-            message: formData.get('message')?.toString() || ''
+            message: formData.get('message')?.toString() || '',
+            'cf-turnstile-response': turnstileResponse
         };
         // Cargar las variables del entorno con el prefijo NEXT_PUBLIC_ 
         const apiBaseUrl = "https://secure-email-api.vercel.app";
@@ -29,7 +38,7 @@ export function initializeContactForm() {
             return;
         }
         try {
-            const response = await fetch(`${apiBaseUrl}/send-email`, {
+            const response = await fetch(`/api/contact`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -44,6 +53,17 @@ export function initializeContactForm() {
                 formMessage.classList.remove('hidden', 'text-red-600');
                 formMessage.classList.add('text-green-600');
                 form.reset();
+                // Reset Turnstile
+                window.turnstile.reset();
+                // Track successful form submission
+                if (window.dataLayer) {
+                    window.dataLayer.push({
+                        event: 'form_submit',
+                        form_name: 'contact_form',
+                        form_status: 'success',
+                        page_location: window.location.href
+                    });
+                }
             }
             else {
                 throw new Error(result.message || 'Error sending message');
@@ -53,6 +73,18 @@ export function initializeContactForm() {
             formMessage.textContent = error instanceof Error ? error.message : 'Error sending message. Please try again.';
             formMessage.classList.remove('hidden', 'text-green-600');
             formMessage.classList.add('text-red-600');
+            // Reset Turnstile en caso de error
+            window.turnstile.reset();
+            // Track failed form submission
+            if (window.dataLayer) {
+                window.dataLayer.push({
+                    event: 'form_submit',
+                    form_name: 'contact_form',
+                    form_status: 'error',
+                    error_message: error instanceof Error ? error.message : 'Unknown error',
+                    page_location: window.location.href
+                });
+            }
         }
         finally {
             submitText.textContent = 'Send Message';
