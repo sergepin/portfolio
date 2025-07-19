@@ -16,10 +16,10 @@ const {
 } = Astro.props;
 
 // Ensure we have a valid base URL
-const baseURL = Astro.site?.toString() || 'https://sergiobarria.com';
-const canonicalURL = new URL(Astro.url.pathname, baseURL);
-const alternateEN = new URL(Astro.url.pathname.replace(/^\/[^\/]+/, '/en'), baseURL);
-const alternateES = new URL(Astro.url.pathname.replace(/^\/[^\/]+/, '/es'), baseURL);
+const baseURL = 'https://sergiopinzon.dev';
+const canonicalURL = 'sergiopinzon.dev/en';
+const alternateEN = 'sergiopinzon.dev/en';
+const alternateES = 'sergiopinzon.dev/es';
 ---
 
 <!-- Global Metadata -->
@@ -43,23 +43,22 @@ const alternateES = new URL(Astro.url.pathname.replace(/^\/[^\/]+/, '/es'), base
 <meta name="title" content={title} />
 <meta name="description" content={description} />
 <meta name="author" content="Sergio Pinzón" />
-<meta name="image" content={new URL('/assets/logo.png', Astro.url)} />
+<meta name="image" content='https://sergiopinzon.dev/images/serge.jpeg' />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content={article ? 'article' : 'website'} />
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={new URL('/assets/logo.png', Astro.url)} />
+<meta property="og:image" content='https://sergiopinzon.dev/images/serge.jpeg' />
 <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'es_ES'} />
 <meta property="og:site_name" content="Sergio Pinzón - Software Developer" />
 
 <!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content={canonicalURL} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL('/assets/logo.png', Astro.url)} />
+<meta property="twitter:image" content='https://sergiopinzon.dev/images/serge.jpeg' />
 
 <!-- Additional SEO -->
 <meta name="robots" content="index,follow" />
