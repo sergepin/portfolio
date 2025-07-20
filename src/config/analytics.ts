@@ -5,6 +5,11 @@ export const analyticsConfig = {
     containerId: import.meta.env.PUBLIC_GTM_ID || 'GTM-W2KMLT7L',
     enabled: import.meta.env.PUBLIC_GTM_ENABLED !== 'false',
   },
+  // Google Analytics 4
+  googleAnalytics: {
+    measurementId: import.meta.env.PUBLIC_GA_MEASUREMENT_ID || 'G-V3YL6SJJY9',
+    enabled: import.meta.env.PUBLIC_GA_ENABLED !== 'false',
+  },
 };
 
 // Eventos personalizados para tracking
