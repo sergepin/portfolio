@@ -34,19 +34,14 @@ export function initializeContactForm() {
       'cf-turnstile-response': turnstileResponse
     };
 
-    // Configuración para la función Lambda
-    const lambdaUrl = "https://p6hz5dey5elprttd47tdfax6mq0rymxy.lambda-url.us-east-2.on.aws/";
-    const apiKey = "SG.1234567890"; // Reemplaza con tu API key real
-    const allowedOrigin = "https://sergiopinzon.dev";
+    const lambdaUrl = 'https://p6hz5dey5elprttd47tdfax6mq0rymxy.lambda-url.us-east-2.on.aws/';
 
     try {
       const response = await fetch(lambdaUrl, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': apiKey,
-          'origin': allowedOrigin,   // Esto se incluye como parte de la solicitud
-          'X-Custom-Origin': allowedOrigin   // Puedes usar o quitar este encabezado dependiendo de tu configuración en la Lambda
+          'Content-Type': 'application/json'
+          // NO necesitas 'origin' ni 'x-api-key' a menos que tú los exijas desde la Lambda
         },
         body: JSON.stringify(data)
       });
@@ -60,7 +55,7 @@ export function initializeContactForm() {
         form.reset();
         window.turnstile.reset();
 
-        // Track successful form submission (Google Tag Manager)
+        // Google Tag Manager event
         if (window.dataLayer) {
           window.dataLayer.push({
             event: 'form_submit',
@@ -70,7 +65,6 @@ export function initializeContactForm() {
           });
         }
       } else {
-        // Mejor manejo de error con detalles específicos
         const errorMessage = result.message || 'Error sending message. Please try again.';
         formMessage.textContent = errorMessage;
         formMessage.classList.remove('hidden', 'text-green-600');
@@ -82,7 +76,6 @@ export function initializeContactForm() {
       formMessage.classList.add('text-red-600');
       window.turnstile.reset();
 
-      // Track failed form submission (Google Tag Manager)
       if (window.dataLayer) {
         window.dataLayer.push({
           event: 'form_submit',
@@ -99,7 +92,7 @@ export function initializeContactForm() {
   });
 }
 
-// Agregar la declaración de tipos para Turnstile y Google Tag Manager
+// Declaración global
 declare global {
   interface Window {
     turnstile: {
